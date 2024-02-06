@@ -23,7 +23,7 @@ locals {
     {
       "profile::slurm::controller::tfe_workspace" = data.tfe_workspace.current.id
     },
-    yamldecode(file("../common/config.yaml"))
+    yamldecode(file("../common/config.yaml")),
     yamldecode(file("config.yaml"))
   ))
   image_cpu = "snapshot-cpunode-2024.1"
