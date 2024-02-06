@@ -11,4 +11,5 @@ locals {
     login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
     nodepool   = { type = "g1-8gb-c4-22gb", tags = ["node", "pool"], count = 10, image=local.image_gpu }
   }
+  name = "ift6095"
 }
