@@ -26,6 +26,7 @@ locals {
     yamldecode(file("../common/config.yaml"))
     yamldecode(file("config.yaml"))
   ))
+  image = "snapshot-cpunode-2024.1"
 }
 
 module "openstack" {
