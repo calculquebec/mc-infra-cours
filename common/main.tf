@@ -17,51 +17,83 @@ data "tfe_workspace" "current" {
 }
 
 locals {
-  image_cpu = try(local.custom_image_cpu, "snapshot-cpunode-2024.1")
-  image_gpu = try(local.custom_image_gpu, "snapshot-gpunode-2024.1")
-  ncpu = try(local.custom_ncpu, 0)
-  ngpu = try(local.custom_gcpu, 0)
-  ncpupool = try(local.custom_ncpupool, 2)
-  ngpupool = try(local.custom_gcpupool, 2)
+  default {
+    image_cpu = "snapshot-cpunode-2024.1"
+    image_gpu = "snapshot-gpunode-2024.1"
+    ncpu = 0
+    ngpu = 0
+    ncpupool = 2
+    ngpupool = 2
+    home_size = 100
+    project_size = 100
+    scratch_size = 100
 
-  default_instances_map = {
-    arbutus = {
-        mgmt   = { type = "p8-12gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
-        login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
-        nodecpu   = { type = "c8-30gb-186-avx2", tags = ["node"], count = local.ncpu, image=local.image_gpu }
-        nodegpu   = { type = "g1-8gb-c4-22gb", tags = ["node"], count = local.ngpu, image=local.image_gpu }
-        nodepoolgpu   = { type = "g1-8gb-c4-22gb", tags = ["node", "pool"], count = local.ngpupool, image=local.image_gpu }
-        nodepoolcpu   = { type = "c8-30gb-186-avx2", tags = ["node", "pool"], count = local.ncpupool, image=local.image_gpu }
-    }
-    beluga = {
-        mgmt   = { type = "p4-7.5gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
-        login  = { type = "p4-7.5gb", tags = ["login", "public", "proxy"], count = 1 }
-        nodecpu   = { type = "c8-60gb", tags = ["node"], count = local.ncpu, image=local.image_gpu }
-        nodepoolcpu   = { type = "c8-60gb", tags = ["node", "pool"], count = local.ncpupool, image=local.image_cpu }
-    }
-  }
-  default_instances = local.default_instances_map[var.cloud_name]
-
-  home_size = local.custom_home_size ? local.custom_home_size : 100
-  project_size = local.custom_project_size ? local.custom_project_size : 100
-  scratch_size = local.custom_scratch_size ? local.custom_scratch_size : 100
-  default_volumes_map = {
-    arbutus = {
-      nfs = {
-        home     = { size = local.home_size }
-        project  = { size = local.project_size }
-        scratch  = { size = local.scratch_size }
+    instances_map = {
+      arbutus = {
+          mgmt   = { type = "p8-12gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
+          login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
+          nodecpu   = { 
+            type = "c8-30gb-186-avx2", 
+            tags = ["node"], 
+            count = try(local.custom.ncpu, local.default.ncpu), 
+            image = try(local.custom.image_cpu, local.default.image_cpu),
+          }
+          nodecpupool   = { 
+            type = "c8-30gb-186-avx2", 
+            tags = ["node", "pool"], 
+            count = try(local.custom.ncpupool, local.default.ncpupool), 
+            image = try(local.custom.image_cpu, local.default.image_cpu),
+          }
+          nodegpu   = { 
+            type = "g1-8gb-c4-22gb", 
+            tags = ["node"], 
+            count = try(local.custom.ngpu, local.default.ngpu), 
+            image = try(local.custom.image_gpu, local.default.image_gpu),
+          }
+          nodegpupool   = { 
+            type = "g1-8gb-c4-22gb", 
+            tags = ["node", "pool], 
+            count = try(local.custom.ngpupool, local.default.ngpupool), 
+            image = try(local.custom.image_gpu, local.default.image_gpu),
+          }
+      }
+      beluga = {
+          mgmt   = { type = "p4-7.5gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
+          login  = { type = "p4-7.5gb", tags = ["login", "public", "proxy"], count = 1 }
+          nodecpu   = { 
+            type = "c8-60gb", 
+            tags = ["node"], 
+            count = try(local.custom.ncpu, local.default.ncpu), 
+            image = try(local.custom.image_cpu, local.default.image_cpu),
+          }
+          nodecpupool   = { 
+            type = "c8-60gb", 
+            tags = ["node", "pool"], 
+            count = try(local.custom.ncpupool, local.default.ncpupool), 
+            image = try(local.custom.image_cpu, local.default.image_cpu),
+          }
       }
     }
-    beluga = {
-      nfs = {
-        home     = { size = local.home_size, type = "volumes-ssd"  }
-        project  = { size = local.project_size, type = "volumes-ec"  }
-        scratch  = { size = local.scratch_size, type = "volumes-ec"  }
+    volumes_map = {
+      arbutus = {
+        nfs = {
+          home     = { size = try(local.custom.home_size, local.default.home_size) }
+          project  = { size = try(local.custom.project_size, local.default.project_size) }
+          scratch  = { size = try(local.custom.scratch_size, local.default.scratch_size) }
+        }
+      }
+      beluga = {
+        nfs = {
+          home     = { size = try(local.custom.home_size, local.default.home_size), type = "volumes-ssd"  }
+          project  = { size = try(local.custom.project_size, local.default.project_size), type = "volumes-ec"  }
+          scratch  = { size = try(local.custom.scratch_size, local.default.scratch_size), type = "volumes-ec"  }
+        }
       }
     }
   }
-  default_volumes = local.default_volumes_map[var.cloud_name]
+
+  instances = try(local.custom.instances, local.default.instances_map[var.cloud_name])
+  volumes = try(local.custom.volumes, local.default.volumes_map[var.cloud_name])
 
   hieradata = yamlencode(merge(
     var.token_hieradata,
@@ -82,7 +114,7 @@ module "openstack" {
   domain       = "calculquebec.cloud"
   image        = "Rocky-8"
 
-  instances = local.instances ? local.instances : local.default_instances
+  instances = local.instances
 
   # var.pool is managed by Slurm through Terraform REST API.
   # To let Slurm manage a type of nodes, add "pool" to its tag list.
@@ -90,7 +122,7 @@ module "openstack" {
   # Refer to Magic Castle Documentation - Enable Magic Castle Autoscaling
   pool = var.pool
 
-  volumes = local.volumes ? local.volumes : local.default_volumes
+  volumes = local.volumes
 
   generate_ssh_key = true
   public_keys = compact(concat(split("\n", file("../common/sshkeys.pub")), ))
