@@ -17,7 +17,7 @@ data "tfe_workspace" "current" {
 }
 
 locals {
-  default {
+  default = {
     image_cpu = "snapshot-cpunode-2024.1"
     image_gpu = "snapshot-gpunode-2024.1"
     ncpu = 0
@@ -52,7 +52,7 @@ locals {
           }
           nodegpupool   = { 
             type = "g1-8gb-c4-22gb", 
-            tags = ["node", "pool], 
+            tags = ["node", "pool"], 
             count = try(local.custom.ngpupool, local.default.ngpupool), 
             image = try(local.custom.image_gpu, local.default.image_gpu),
           }
