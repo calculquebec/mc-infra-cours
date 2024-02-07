@@ -1,5 +1,5 @@
 locals {
-  custom {
+  custom = {
     ngpu = 1
     ngpupool = 10
     home_size = 100
