@@ -17,7 +17,7 @@ data "tfe_workspace" "current" {
 }
 
 locals {
-  default = {
+  default_pod = {
     image_cpu = "snapshot-cpunode-2024.1"
     image_gpu = "snapshot-gpunode-2024.1"
     ncpu = 0
@@ -27,7 +27,8 @@ locals {
     home_size = 100
     project_size = 100
     scratch_size = 100
-
+  }
+  default = {
     instances_map = {
       arbutus = {
           mgmt   = { type = "p8-12gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
@@ -35,26 +36,26 @@ locals {
           nodecpu   = { 
             type = "c8-30gb-186-avx2", 
             tags = ["node"], 
-            count = try(local.custom.ncpu, local.default.ncpu), 
-            image = try(local.custom.image_cpu, local.default.image_cpu),
+            count = try(local.custom.ncpu, local.default_pod.ncpu), 
+            image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodecpupool   = { 
             type = "c8-30gb-186-avx2", 
             tags = ["node", "pool"], 
-            count = try(local.custom.ncpupool, local.default.ncpupool), 
-            image = try(local.custom.image_cpu, local.default.image_cpu),
+            count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
+            image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodegpu   = { 
             type = "g1-8gb-c4-22gb", 
             tags = ["node"], 
-            count = try(local.custom.ngpu, local.default.ngpu), 
-            image = try(local.custom.image_gpu, local.default.image_gpu),
+            count = try(local.custom.ngpu, local.default_pod.ngpu), 
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
           nodegpupool   = { 
             type = "g1-8gb-c4-22gb", 
             tags = ["node", "pool"], 
-            count = try(local.custom.ngpupool, local.default.ngpupool), 
-            image = try(local.custom.image_gpu, local.default.image_gpu),
+            count = try(local.custom.ngpupool, local.default_pod.ngpupool), 
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
       }
       beluga = {
@@ -63,30 +64,30 @@ locals {
           nodecpu   = { 
             type = "c8-60gb", 
             tags = ["node"], 
-            count = try(local.custom.ncpu, local.default.ncpu), 
-            image = try(local.custom.image_cpu, local.default.image_cpu),
+            count = try(local.custom.ncpu, local.default_pod.ncpu), 
+            image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodecpupool   = { 
             type = "c8-60gb", 
             tags = ["node", "pool"], 
-            count = try(local.custom.ncpupool, local.default.ncpupool), 
-            image = try(local.custom.image_cpu, local.default.image_cpu),
+            count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
+            image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
       }
     }
     volumes_map = {
       arbutus = {
         nfs = {
-          home     = { size = try(local.custom.home_size, local.default.home_size) }
-          project  = { size = try(local.custom.project_size, local.default.project_size) }
-          scratch  = { size = try(local.custom.scratch_size, local.default.scratch_size) }
+          home     = { size = try(local.custom.home_size, local.default_pod.home_size) }
+          project  = { size = try(local.custom.project_size, local.default_pod.project_size) }
+          scratch  = { size = try(local.custom.scratch_size, local.default_pod.scratch_size) }
         }
       }
       beluga = {
         nfs = {
-          home     = { size = try(local.custom.home_size, local.default.home_size), type = "volumes-ssd"  }
-          project  = { size = try(local.custom.project_size, local.default.project_size), type = "volumes-ec"  }
-          scratch  = { size = try(local.custom.scratch_size, local.default.scratch_size), type = "volumes-ec"  }
+          home     = { size = try(local.custom.home_size, local.default_pod.home_size), type = "volumes-ssd"  }
+          project  = { size = try(local.custom.project_size, local.default_pod.project_size), type = "volumes-ec"  }
+          scratch  = { size = try(local.custom.scratch_size, local.default_pod.scratch_size), type = "volumes-ec"  }
         }
       }
     }
