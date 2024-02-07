@@ -128,7 +128,7 @@ module "openstack" {
   generate_ssh_key = true
   public_keys = compact(concat(split("\n", file("../common/sshkeys.pub")), ))
 
-  nb_users = 0
+  nb_users = 1
   # Shared password, randomly chosen if blank
   guest_passwd = ""
 
