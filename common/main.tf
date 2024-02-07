@@ -17,12 +17,12 @@ data "tfe_workspace" "current" {
 }
 
 locals {
-  image_cpu = local.custom_image_cpu ? local.custom_image_cpu : "snapshot-cpunode-2024.1"
-  image_gpu = local.custom_image_gpu ? local.custom_image_gpu : "snapshot-gpunode-2024.1"
-  ncpu = local.custom_ncpu ? local.custom_ncpu : 0
-  ngpu = local.custom_gcpu ? local.custom_gcpu : 0
-  ncpupool = local.custom_ncpupool ? local.custom_ncpupool : 2
-  ngpupool = local.custom_gcpupool ? local.custom_gcpupool : 2
+  image_cpu = try(local.custom_image_cpu, "snapshot-cpunode-2024.1")
+  image_gpu = try(local.custom_image_gpu, "snapshot-gpunode-2024.1")
+  ncpu = try(local.custom_ncpu, 0)
+  ngpu = try(local.custom_gcpu, 0)
+  ncpupool = try(local.custom_ncpupool, 2)
+  ngpupool = try(local.custom_gcpupool, 2)
 
   default_instances_map = {
     arbutus = {
