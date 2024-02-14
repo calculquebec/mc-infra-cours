@@ -10,6 +10,7 @@ variable "pool" {
 variable "TFC_WORKSPACE_NAME" { type = string }
 variable "token_hieradata" {}
 variable "cloud_name" { type = string }
+variable "prometheus_password" {}
 
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
@@ -100,6 +101,8 @@ locals {
     var.token_hieradata,
     {
       "profile::slurm::controller::tfe_workspace" = data.tfe_workspace.current.id
+      "cluster_name" = local.name
+      "prometheus_password" = var.prometheus_password
     },
     yamldecode(file("../common/config.yaml")),
     yamldecode(file("config.yaml"))
