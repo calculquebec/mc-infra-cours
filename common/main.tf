@@ -103,6 +103,7 @@ locals {
       "profile::slurm::controller::tfe_workspace" = data.tfe_workspace.current.id
       "cluster_name" = local.name
       "prometheus_password" = var.prometheus_password
+      "cloud_name" = var.cloud_name
     },
     yamldecode(file("../common/config.yaml")),
     yamldecode(file("config.yaml"))

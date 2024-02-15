@@ -12,6 +12,7 @@ prometheus::global_config:
   scrape_timeout: '1m'
   external_labels:
     cluster: "%{alias('cluster_name')}"
+    cloud: "%{alias('cloud_name')}"
     team: 'calculquebec'
     purpose: 'cours_academiques'
     replica: '1'
