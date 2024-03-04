@@ -97,7 +97,7 @@ locals {
 
   instances = try(local.custom.instances, local.default.instances_map[var.cloud_name])
   volumes = try(local.custom.volumes, local.default.volumes_map[var.cloud_name])
-  cluster_purpose = try(local.custom.cluster_purpose, local.default.cluster_purpose)
+  cluster_purpose = try(local.custom.cluster_purpose, local.default_pod.cluster_purpose)
 
   hieradata = yamlencode(merge(
     var.token_hieradata,
