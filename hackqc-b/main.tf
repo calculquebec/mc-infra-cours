@@ -79,7 +79,7 @@ locals {
             type = "gpu32-240-3450gb-a100x1",
             tags = ["node"], 
             count = try(local.custom.ngpu, local.default_pod.ngpu), 
-	    mig = { "1g.5gb" = 2, "2g.10gb" = 1, "3g.20gb" = 1 }
+	    mig = { "3g.20gb" = 2 }
             image = "Rocky-8" 
 	    #try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
@@ -87,6 +87,7 @@ locals {
             type = "gpu32-240-3450gb-a100x1",
             tags = ["node", "pool"], 
             count = try(local.custom.ngpupool, local.default_pod.ngpupool), 
+	    mig = { "3g.20gb" = 2 }
             image = "Rocky-8"
 	    #try(local.custom.image_gpu, local.default_pod.image_gpu),
           }

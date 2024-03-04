@@ -75,6 +75,20 @@ locals {
             count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
+          nodegpu   = { 
+            type = "gpu32-240-3450gb-a100x1",
+            tags = ["node"], 
+            count = try(local.custom.ngpu, local.default_pod.ngpu), 
+            image = "Rocky-8" 
+	    #try(local.custom.image_gpu, local.default_pod.image_gpu),
+          }
+          nodegpupool   = { 
+            type = "gpu32-240-3450gb-a100x1",
+            tags = ["node", "pool"], 
+            count = try(local.custom.ngpupool, local.default_pod.ngpupool), 
+            image = "Rocky-8"
+	    #try(local.custom.image_gpu, local.default_pod.image_gpu),
+          }
       }
     }
     volumes_map = {
