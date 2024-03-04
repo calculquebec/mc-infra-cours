@@ -1,0 +1,2 @@
+
+profile::cvmfs::client::lmod_default_modules: ['StdEnv/2020', 'gcc/9.3.0', 'openmpi/4.0.3', 'cuda/11.7', 'python/3.10', 'ipython-kernel/3.10']
