@@ -28,6 +28,7 @@ locals {
     home_size = 100
     project_size = 100
     scratch_size = 100
+    cluster_purpose = "cours_academiques"
   }
   default = {
     instances_map = {
@@ -96,6 +97,7 @@ locals {
 
   instances = try(local.custom.instances, local.default.instances_map[var.cloud_name])
   volumes = try(local.custom.volumes, local.default.volumes_map[var.cloud_name])
+  cluster_purpose = try(local.custom.cluster_purpose, local.default.cluster_purpose)
 
   hieradata = yamlencode(merge(
     var.token_hieradata,
@@ -104,6 +106,7 @@ locals {
       "cluster_name" = local.name
       "prometheus_password" = var.prometheus_password
       "cloud_name" = var.cloud_name
+      "cluster_purpose" = local.cluster_purpose
     },
     yamldecode(file("../common/config.yaml")),
     yamldecode(file("config.yaml"))
