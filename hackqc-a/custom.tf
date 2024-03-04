@@ -8,5 +8,5 @@ locals {
     cluster_purpose = "hackathon"
   }
 
-  name = "hackqc1"
+  name = "hackqc-a"
 }
