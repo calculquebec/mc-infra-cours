@@ -104,7 +104,7 @@ locals {
       beluga = {
         nfs = {
           home     = { size = try(local.custom.home_size, local.default_pod.home_size), type = "volumes-ssd"  }
-          project  = { size = try(local.custom.project_size, local.default_pod.project_size), type = "volumes-ec"  }
+          project  = { size = try(local.custom.project_size, local.default_pod.project_size), type = "volumes-ssd"  }
           scratch  = { size = try(local.custom.scratch_size, local.default_pod.scratch_size), type = "volumes-ec"  }
         }
       }
