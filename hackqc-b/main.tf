@@ -68,12 +68,14 @@ locals {
             tags = ["node"], 
             count = try(local.custom.ncpu, local.default_pod.ncpu), 
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
+	    disk_size = "50"
           }
           nodecpupool   = { 
             type = "c8-60gb", 
             tags = ["node", "pool"], 
             count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
+	    disk_size = "50"
           }
           nodegpu   = { 
             type = "gpu32-240-3450gb-a100x1",
@@ -81,6 +83,7 @@ locals {
             count = try(local.custom.ngpu, local.default_pod.ngpu), 
 	    mig = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	    disk_size = "50"
           }
           nodegpupool   = { 
             type = "gpu32-240-3450gb-a100x1",
@@ -88,6 +91,7 @@ locals {
             count = try(local.custom.ngpupool, local.default_pod.ngpupool), 
 	    mig = { "3g.20gb" = 2 }
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	    disk_size = "50"
           }
       }
     }
