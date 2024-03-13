@@ -1,7 +1,7 @@
 locals {
   custom = {
-    ngpu = 1
-    ngpupool = 3
+    ngpu = 2
+    ngpupool = 2
     home_size = 500
     project_size = 500
     scratch_size = 10
