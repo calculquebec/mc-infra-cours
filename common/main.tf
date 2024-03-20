@@ -8,7 +8,7 @@ variable "pool" {
 }
 
 variable "TFC_WORKSPACE_NAME" { type = string }
-variable "token_hieradata" {}
+variable "tfe_token" {}
 variable "cloud_name" { type = string }
 variable "prometheus_password" {}
 
@@ -100,8 +100,8 @@ locals {
   cluster_purpose = try(local.custom.cluster_purpose, local.default_pod.cluster_purpose)
 
   hieradata = yamlencode(merge(
-    var.token_hieradata,
     {
+      "profile::slurm::controller::tfe_token" =  var.tfe_token
       "profile::slurm::controller::tfe_workspace" = data.tfe_workspace.current.id
       "cluster_name" = local.name
       "prometheus_password" = var.prometheus_password
