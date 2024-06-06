@@ -14,3 +14,7 @@ profile::accounts::skel_archives:
     source: https://github.com/calculquebec/mc-infra-cours/raw/main/sc-seq-ws/rlibs-4.tar.gz
   - filename: rlibs-5.tar.gz
     source: https://github.com/calculquebec/mc-infra-cours/raw/main/sc-seq-ws/rlibs-5.tar.gz
+  - filename: 14yo_intermediate.tar.gz
+    source: https://github.com/calculquebec/mc-infra-cours/raw/main/sc-seq-ws/14yo_intermediate.tar.gz
+  - filename: 41yo_intermediate.tar.gz
+    source: https://github.com/calculquebec/mc-infra-cours/raw/main/sc-seq-ws/41yo_intermediate.tar.gz
