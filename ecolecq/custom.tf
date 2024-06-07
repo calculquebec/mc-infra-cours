@@ -9,5 +9,5 @@ locals {
     scratch_size = 50
   }
 
-  name = "log645"
+  name = "ecolecq"
 }
