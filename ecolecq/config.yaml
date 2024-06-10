@@ -1,6 +1,12 @@
 
 profile::cvmfs::client::lmod_default_modules: ['StdEnv/2020', 'gcc/9.3.0', 'openmpi/4.0.3', 'python/3.10', 'ipython-kernel/3.10']
 
+jupyterhub::jupyterhub_config_hash:
+    SlurmFormSpawner:
+        disable_form: true
+
+jupyterhub::kernel::venv::packages: ['pennylane']
+
 profile::users::ldap::users:
     user:
         count: 50
