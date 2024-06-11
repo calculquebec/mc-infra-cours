@@ -13,7 +13,7 @@ jupyterhub::kernel::venv::pip_environment:
 jupyterhub::kernel::venv::packages: ['PennyLane']
 
 profile::users::ldap::users:
-    usr:
+    user:
         count: 50
         passwd: "%{alias('passwd_user')}"
         groups: ['def-sponsor00']
