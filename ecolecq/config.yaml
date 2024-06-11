@@ -1,5 +1,5 @@
 
-profile::cvmfs::client::lmod_default_modules: ['StdEnv/2020', 'gcc/9.3.0', 'openmpi/4.0.3', 'python/3.10', 'ipython-kernel/3.10']
+profile::cvmfs::client::lmod_default_modules: ['StdEnv/2023', 'gcc/13.3', 'openmpi/5.0.3', 'python/3.10.13', 'ipython-kernel/3.10']
 
 jupyterhub::jupyterhub_config_hash:
     SlurmFormSpawner:
