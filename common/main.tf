@@ -11,7 +11,7 @@ variable "TFC_WORKSPACE_NAME" { type = string }
 variable "tfe_token" {}
 variable "cloud_name" { type = string }
 variable "prometheus_password" {}
-variable "credentials_hieradata" { default= "" }
+variable "credentials_hieradata" { default= {} }
 
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
