@@ -25,7 +25,7 @@ locals {
     ncpu = 0
     ngpu = 0
     ncpupool = 2
-    ngpupool = 2
+    ngpupool = 0
     home_size = 100
     project_size = 100
     scratch_size = 100
@@ -36,45 +36,61 @@ locals {
       arbutus = {
           mgmt   = { type = "p8-12gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
           login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
-          nodecpu   = { 
-            type = "c8-30gb-186-avx2", 
-            tags = ["node"], 
-            count = try(local.custom.ncpu, local.default_pod.ncpu), 
+          nodecpu   = {
+            type = "c8-30gb-186-avx2",
+            tags = ["node"],
+            count = try(local.custom.ncpu, local.default_pod.ncpu),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
-          nodecpupool   = { 
-            type = "c8-30gb-186-avx2", 
-            tags = ["node", "pool"], 
-            count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
+          nodecpupool   = {
+            type = "c8-30gb-186-avx2",
+            tags = ["node", "pool"],
+            count = try(local.custom.ncpupool, local.default_pod.ncpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
-          nodegpu   = { 
-            type = "g1-8gb-c4-22gb", 
-            tags = ["node"], 
-            count = try(local.custom.ngpu, local.default_pod.ngpu), 
+          nodegpu   = {
+            type = "g1-8gb-c4-22gb",
+            tags = ["node"],
+            count = try(local.custom.ngpu, local.default_pod.ngpu),
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
-          nodegpupool   = { 
-            type = "g1-8gb-c4-22gb", 
-            tags = ["node", "pool"], 
-            count = try(local.custom.ngpupool, local.default_pod.ngpupool), 
+          nodegpupool   = {
+            type = "g1-8gb-c4-22gb",
+            tags = ["node", "pool"],
+            count = try(local.custom.ngpupool, local.default_pod.ngpupool),
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
       }
       beluga = {
           mgmt   = { type = "p4-7.5gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
           login  = { type = "p4-7.5gb", tags = ["login", "public", "proxy"], count = 1 }
-          nodecpu   = { 
-            type = "c8-60gb", 
-            tags = ["node"], 
-            count = try(local.custom.ncpu, local.default_pod.ncpu), 
+          nodecpu   = {
+            type = "c8-60gb",
+            tags = ["node"],
+            count = try(local.custom.ncpu, local.default_pod.ncpu),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
-          nodecpupool   = { 
-            type = "c8-60gb", 
-            tags = ["node", "pool"], 
-            count = try(local.custom.ncpupool, local.default_pod.ncpupool), 
+          nodecpupool   = {
+            type = "c8-60gb",
+            tags = ["node", "pool"],
+            count = try(local.custom.ncpupool, local.default_pod.ncpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
+          }
+          nodegpu   = {
+            type = "gpu32-240-3450gb-a100x1",
+            tags = ["node"],
+            count = try(local.custom.ngpu, local.default_pod.ngpu),
+	    mig = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	    disk_size = "50"
+          }
+          nodegpupool   = {
+            type = "gpu32-240-3450gb-a100x1",
+            tags = ["node", "pool"],
+            count = try(local.custom.ngpupool, local.default_pod.ngpupool),
+	    mig = { "1g.5gb" = 7 }
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	    disk_size = "50"
           }
       }
     }
