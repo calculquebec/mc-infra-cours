@@ -41,7 +41,8 @@ locals {
     instances_map = {
       arbutus = {
           mgmt   = { type = "p8-12gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
-          login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
+          login  = { type = "c2-7.5gb-31-avx2", tags = ["login", "public", "proxy"], count = 1 }
+          #login  = { type = "p4-6gb-avx2", tags = ["login", "public", "proxy"], count = 1 }
           nodecpu   = {
             type = "c8-30gb-186-avx2",
             tags = ["node"],
