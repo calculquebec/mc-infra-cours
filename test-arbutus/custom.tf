@@ -7,8 +7,8 @@ locals {
     home_size = 100
     project_size = 100
     scratch_size = 50
-    image_cpu = "AlmaLinux-9"
-    image_gpu = "AlmaLinux-9"
+    image_cpu = "Rocky-8"
+    image_gpu = "Rocky-8"
   }
 
   name = "test-mc-infra-cours-arbutus"

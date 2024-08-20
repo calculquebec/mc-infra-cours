@@ -145,7 +145,7 @@ module "openstack" {
 
   cluster_name = local.name
   domain       = "calculquebec.cloud"
-  image        = "AlmaLinux-9"
+  image        = "Rocky-8"
 
   instances = local.instances
 
