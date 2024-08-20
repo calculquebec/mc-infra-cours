@@ -26,7 +26,7 @@ data "tfe_workspace" "current" {
 
 locals {
   default_pod = {
-    image_cpu = "snapshot-cpunode-2024.3"
+    image_cpu = "AlmaLinux-9" # snapshot-cpunode-2024.1"
     image_gpu = "AlmaLinux-9" #"snapshot-gpunode-2024.1"
     ncpu = 0
     ngpu = 0
@@ -139,9 +139,9 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=13.5.0"
+  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-alpha"
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-  config_version = "13.5.0"
+  config_version = "426612b"
 
   cluster_name = local.name
   domain       = "calculquebec.cloud"
@@ -177,7 +177,7 @@ output "public_ip" {
 
 # Uncomment to register your domain name with CloudFlare
 module "dns" {
-  source           = "git::https://github.com/ComputeCanada/magic_castle.git//dns/cloudflare?ref=13.5.0"
+  source           = "git::https://github.com/ComputeCanada/magic_castle.git//dns/cloudflare?ref=14.0.0-alpha"
   bastions         = module.openstack.bastions
   name             = module.openstack.cluster_name
   domain           = module.openstack.domain
