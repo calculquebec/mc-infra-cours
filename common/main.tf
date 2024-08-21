@@ -65,50 +65,50 @@ locals {
   default = {
     instances_map = {
       arbutus = {
-          mgmt   = { type = try(local.custom.mgmt_type, local.default_pod.instances_type_map.arbutus.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
-          login  = { type = try(local.custom.login_type, local.default_pod.instances_type_map.arbutus.login), tags = ["login", "public", "proxy"], count = 1 }
+          mgmt   = { type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
+          login  = { type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login), tags = ["login", "public", "proxy"], count = 1 }
           nodecpu   = {
-            type = try(local.custom.cpu_type, local.default_pod.instances_type_map.arbutus.cpu),
+            type = try(local.custom.instances_type_map.arbutus.cpu, local.default_pod.instances_type_map.arbutus.cpu),
             tags = ["node"],
             count = try(local.custom.ncpu, local.default_pod.ncpu),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodecpupool   = {
-            type = try(local.custom.cpupool_type, local.default_pod.instances_type_map.arbutus.cpupool),
+            type = try(local.custom.instances_type_map.arbutus.cpupool, local.default_pod.instances_type_map.arbutus.cpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ncpupool, local.default_pod.ncpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodegpu   = {
-            type = try(local.custom.gpu_type, local.default_pod.instances_type_map.arbutus.gpu),
+            type = try(local.custom.instances_type_map.arbutus.gpu, local.default_pod.instances_type_map.arbutus.gpu),
             tags = ["node"],
             count = try(local.custom.ngpu, local.default_pod.ngpu),
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
           nodegpupool   = {
-            type = try(local.custom.cpupool_type, local.default_pod.instances_type_map.arbutus.cpupool),
+            type = try(local.custom.instances_type_map.arbutus.cpupool, local.default_pod.instances_type_map.arbutus.cpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ngpupool, local.default_pod.ngpupool),
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
       }
       beluga = {
-          mgmt   = { type = try(local.custom.mgmt_type, local.default_pod.instances_type_map.beluga.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
-          login  = { type = try(local.custom.login_type, local.default_pod.instances_type_map.beluga.login), tags = ["login", "public", "proxy"], count = 1 }
+          mgmt   = { type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
+          login  = { type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login), tags = ["login", "public", "proxy"], count = 1 }
           nodecpu   = {
-            type = try(local.custom.cpu_type, local.default_pod.instances_type_map.beluga.cpu),
+            type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
             tags = ["node"],
             count = try(local.custom.ncpu, local.default_pod.ncpu),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodecpupool   = {
-            type = try(local.custom.cpupool_type, local.default_pod.instances_type_map.beluga.cpupool),
+            type = try(local.custom.instances_type_map.beluga.cpupool, local.default_pod.instances_type_map.beluga.cpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ncpupool, local.default_pod.ncpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodegpu   = {
-            type = try(local.custom.gpu_type, local.default_pod.instances_type_map.beluga.gpu),
+            type = try(local.custom.instances_type_map.beluga.gpu, local.default_pod.instances_type_map.beluga.gpu),
             tags = ["node"],
             count = try(local.custom.ngpu, local.default_pod.ngpu),
 	    mig = try(local.custom.gpu_mig_config, local.default_pod.gpu_mig_config)
@@ -116,7 +116,7 @@ locals {
 	    disk_size = "50"
           }
           nodegpupool   = {
-            type = try(local.custom.cpupool_type, local.default_pod.instances_type_map.beluga.cpupool),
+            type = try(local.custom.instances_type_map.beluga.cpupool, local.default_pod.instances_type_map.beluga.cpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ngpupool, local.default_pod.ngpupool),
 	    mig = try(local.custom.gpupool_mig_config, local.default_pod.gpupool_mig_config)
