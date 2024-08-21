@@ -123,6 +123,7 @@ locals {
   instances = try(local.custom.instances, local.default.instances_map[var.cloud_name])
   volumes = try(local.custom.volumes, local.default.volumes_map[var.cloud_name])
   cluster_purpose = try(local.custom.cluster_purpose, local.default_pod.cluster_purpose)
+  config_version = try(local.custom.config_version, local.default.config_version)
 
   hieradata = yamlencode(merge(
     {
@@ -142,7 +143,7 @@ locals {
 module "openstack" {
   source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-alpha"
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-  config_version = try(local.custom.config_version, local.default.config_version)
+  config_version = local.config_version
 
   cluster_name = local.name
   domain       = "calculquebec.cloud"
