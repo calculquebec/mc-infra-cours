@@ -36,6 +36,7 @@ locals {
     project_size = 100
     scratch_size = 100
     cluster_purpose = "cours_academiques"
+    config_version = "426612b"
   }
   default = {
     instances_map = {
@@ -141,7 +142,7 @@ locals {
 module "openstack" {
   source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-alpha"
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-  config_version = "426612b"
+  config_version = try(local.custom.config_version, local.default.config_version)
 
   cluster_name = local.name
   domain       = "calculquebec.cloud"
