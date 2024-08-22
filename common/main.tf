@@ -37,7 +37,7 @@ locals {
     project_size = 100
     scratch_size = 100
     cluster_purpose = "cours_academiques"
-    config_version = "a692837"
+    config_version = "14.0.0-beta"
     
     instances_type_map = {
       arbutus = {
@@ -163,7 +163,7 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-alpha"
+  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-beta"
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
@@ -201,7 +201,7 @@ output "public_ip" {
 
 # Uncomment to register your domain name with CloudFlare
 module "dns" {
-  source           = "git::https://github.com/ComputeCanada/magic_castle.git//dns/cloudflare?ref=14.0.0-alpha"
+  source           = "git::https://github.com/ComputeCanada/magic_castle.git//dns/cloudflare?ref=14.0.0-beta"
   bastions         = module.openstack.bastions
   name             = module.openstack.cluster_name
   domain           = module.openstack.domain
