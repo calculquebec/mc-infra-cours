@@ -31,7 +31,7 @@ locals {
     project_size = 100
     scratch_size = 100
     cluster_purpose = "cours_academiques"
-    config_version = "14.0.0-beta"
+    config_version = "e64f448"
     
     instances_type_map = {
       arbutus = {
