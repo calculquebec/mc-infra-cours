@@ -1,6 +1,6 @@
 locals {
   custom = {
-    ncpu = 1
+    ncpu = 0
     ncpupool = 15
     ngpu = 0
     ngpupool = 0
