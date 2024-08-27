@@ -9,5 +9,5 @@ locals {
     scratch_size = 50
   }
 
-  name = "test-mc-infra-cours-arbutus"
+  name = "test-mc-infra-cours"
 }
