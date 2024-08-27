@@ -1,18 +1,15 @@
 terraform {
   required_version = ">= 1.4.0"
 }
-
 variable "pool" {
   description = "Slurm pool of compute nodes"
   default = []
 }
-
 variable "TFC_WORKSPACE_NAME" { type = string }
 variable "tfe_token" {}
 variable "cloud_name" { type = string }
-variable "prometheus_password" {}
-variable "credentials_hieradata" { default= {} }
-
+variable "prometheus_password" { type = string }
+variable "credentials_hieradata" { default= "" }
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
   organization = "CalculQuebec"
@@ -31,7 +28,7 @@ locals {
     project_size = 100
     scratch_size = 100
     cluster_purpose = "cours_academiques"
-    config_version = "e64f448"
+    config_version = "a282e21"
     
     instances_type_map = {
       arbutus = {
@@ -59,8 +56,16 @@ locals {
   default = {
     instances_map = {
       arbutus = {
-          mgmt   = { type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
-          login  = { type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login), tags = ["login", "public", "proxy"], count = 1 }
+          mgmt   = { 
+	    type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt), 
+	    tags = ["puppet", "mgmt", "nfs"], 
+	    count = 1 
+	  }
+          login  = { 
+	    type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login), 
+	    tags = ["login", "public", "proxy"], 
+	    count = 1 
+	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.arbutus.cpu, local.default_pod.instances_type_map.arbutus.cpu),
             tags = ["node"],
@@ -87,8 +92,16 @@ locals {
           }
       }
       beluga = {
-          mgmt   = { type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt), tags = ["puppet", "mgmt", "nfs"], count = 1 }
-          login  = { type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login), tags = ["login", "public", "proxy"], count = 1 }
+          mgmt   = { 
+	    type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt), 
+	    tags = ["puppet", "mgmt", "nfs"], 
+	    count = 1 
+	  }
+          login  = { 
+	    type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login), 
+	    tags = ["login", "public", "proxy"], 
+	    count = 1 
+	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
             tags = ["node"],
