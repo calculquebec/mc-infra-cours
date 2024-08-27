@@ -5,11 +5,27 @@ variable "pool" {
   description = "Slurm pool of compute nodes"
   default = []
 }
-variable "TFC_WORKSPACE_NAME" { type = string }
-variable "tfe_token" {}
-variable "cloud_name" { type = string }
-variable "prometheus_password" { type = string }
-variable "credentials_hieradata" { default= "" }
+variable "TFC_WORKSPACE_NAME" {
+  type = string
+  default = "" 
+}
+variable "tfe_token" {
+  type = string
+  default = ""
+}
+variable "cloud_name" {
+  type = string
+  default = ""
+}
+variable "prometheus_password" { 
+  type = string 
+  default = ""
+}
+variable "credentials_hieradata" { default= {} }
+variable "cloud_suffix" { 
+  type = string
+  default = ""
+}
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
   organization = "CalculQuebec"
@@ -104,12 +120,14 @@ locals {
 	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
+	    disk_size = 20
             tags = ["node"],
             count = try(local.custom.ncpu, local.default_pod.ncpu),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
           }
           nodecpupool   = {
             type = try(local.custom.instances_type_map.beluga.cpupool, local.default_pod.instances_type_map.beluga.cpupool),
+	    disk_size = 20
             tags = ["node", "pool"],
             count = try(local.custom.ncpupool, local.default_pod.ncpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
@@ -123,7 +141,7 @@ locals {
 	    disk_size = "50"
           }
           nodegpupool   = {
-            type = try(local.custom.instances_type_map.beluga.cpupool, local.default_pod.instances_type_map.beluga.cpupool),
+            type = try(local.custom.instances_type_map.beluga.gpupool, local.default_pod.instances_type_map.beluga.gpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ngpupool, local.default_pod.ngpupool),
 	    mig = try(local.custom.gpupool_mig_config, local.default_pod.gpupool_mig_config)
@@ -174,7 +192,7 @@ module "openstack" {
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
-  cluster_name = local.name
+  cluster_name = "${local.name}${var.cloud_suffix}"
   domain       = "calculquebec.cloud"
   image        = try(local.custom.image, local.default_pod.image)
 
