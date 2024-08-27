@@ -34,8 +34,8 @@ data "tfe_workspace" "current" {
 locals {
   default_pod = {
     image = "Rocky-8"
-    image_cpu = "snapshot-cpunode-2024-R810.2"
-    image_gpu = "snapshot-gpunode-2024-R810.2"
+    image_cpu = "snapshot-cpunode-2024-R810.3"
+    image_gpu = "snapshot-gpunode-2024-R810.3"
     ncpu = 0
     ngpu = 0
     ncpupool = 0
