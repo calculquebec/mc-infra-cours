@@ -18,7 +18,7 @@ jupyterhub::jupyterhub_config_hash:
                 ui:
                         def: 'terminal'
         SlurmFormSpawner:
-                disable_form: true
+                disable_form: false
 
 profile::freeipa::mokey::require_verify_admin: false
 profile::cvmfs::client::lmod_default_modules: ['StdEnv/2023', 'gcc/12.3.0', 'openmpi/4.1.5', 'python/3.10', 'ipython-kernel/3.10']
