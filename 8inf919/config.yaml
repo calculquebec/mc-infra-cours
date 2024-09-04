@@ -19,4 +19,4 @@ jupyterhub::jupyterhub_config_hash:
                         def: 'lab'
 
 profile::freeipa::mokey::require_verify_admin: false
-profile::software_stack::lmod_default_modules:  ['StdEnv/2023', 'gcc/12.3.0', 'openmpi/4.1.5', 'python/3.10', 'ipython-kernel/3.10']
+profile::software_stack::lmod_default_modules:  ['StdEnv/2023', 'gcc/12.3', 'openmpi/4.1.5', 'python/3.10', 'ipython-kernel/3.10']
