@@ -1,7 +1,7 @@
 locals {
   custom = {
     ncpu = 1
-    ncpupool = 15
+    ncpupool = 3
     ngpu = 0
     ngpupool = 0
     home_size = 100
