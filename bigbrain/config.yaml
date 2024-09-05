@@ -19,4 +19,4 @@ jupyterhub::jupyterhub_config_hash:
                         def: 'lab'
 
 profile::freeipa::mokey::require_verify_admin: false
-profile::software_stack::lmod_default_modules:  ['StdEnv/2023', 'fsl/6.0.7.7', 'octave/7.2.0']
+profile::software_stack::lmod_default_modules:  ['StdEnv/2020', 'gcc/9.3.0', 'fsl/6.0.5', 'octave/5.2.0', 'mrtrix/3.0.1']
