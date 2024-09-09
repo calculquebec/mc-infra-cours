@@ -7,6 +7,12 @@ locals {
     home_size = 100
     project_size = 1000
     scratch_size = 500
+
+    instances_type_map = {
+      beluga = {
+        mgmt = "p4-7.5gb"
+      }
+    }
   }
 
   name = "uqac-8inf919"
