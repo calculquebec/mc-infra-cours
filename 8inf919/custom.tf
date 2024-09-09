@@ -7,6 +7,7 @@ locals {
     home_size = 100
     project_size = 1000
     scratch_size = 500
+    nlogin = 0
 
     instances_type_map = {
       beluga = {

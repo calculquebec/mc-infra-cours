@@ -40,6 +40,7 @@ locals {
     ngpu = 0
     ncpupool = 0
     ngpupool = 0
+    nlogin = 1
     home_size = 100
     project_size = 100
     scratch_size = 100
@@ -118,7 +119,7 @@ locals {
           login  = {
 	    type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login),
 	    tags = ["login", "public", "proxy"],
-	    count = 1
+	    count = try(local.custom.nlogin, local.default_pod.nlogin)
 	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
