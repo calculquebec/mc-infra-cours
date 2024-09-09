@@ -56,7 +56,7 @@ locals {
 	gpupool = "g1-8gb-c4-22gb"
       }
       beluga = {
-        mgmt = "p4-7.5gb"
+        mgmt = "p8-15gb"
 	login = "p4-7.5gb"
 	cpu = "c8-60gb"
 	cpupool = "c8-60gb"
