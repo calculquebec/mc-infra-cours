@@ -82,6 +82,7 @@ locals {
           login  = {
 	    type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login),
 	    tags = ["login", "public", "proxy"],
+	    disk_size = 20,
 	    count = 1
 	  }
           nodecpu   = {
@@ -119,6 +120,7 @@ locals {
           login  = {
 	    type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login),
 	    tags = ["login", "public", "proxy"],
+	    disk_size = 20,
 	    count = try(local.custom.nlogin, local.default_pod.nlogin)
 	  }
           nodecpu   = {
