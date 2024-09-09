@@ -72,15 +72,16 @@ locals {
   default = {
     instances_map = {
       arbutus = {
-          mgmt   = { 
-	    type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt), 
-	    tags = ["puppet", "mgmt", "nfs"], 
-	    count = 1 
+          mgmt   = {
+	    type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt),
+	    tags = ["puppet", "mgmt", "nfs"],
+	    disk_size = 20,
+	    count = 1
 	  }
-          login  = { 
-	    type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login), 
-	    tags = ["login", "public", "proxy"], 
-	    count = 1 
+          login  = {
+	    type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login),
+	    tags = ["login", "public", "proxy"],
+	    count = 1
 	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.arbutus.cpu, local.default_pod.instances_type_map.arbutus.cpu),
@@ -108,15 +109,16 @@ locals {
           }
       }
       beluga = {
-          mgmt   = { 
-	    type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt), 
-	    tags = ["puppet", "mgmt", "nfs"], 
-	    count = 1 
+          mgmt   = {
+	    type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt),
+	    tags = ["puppet", "mgmt", "nfs"],
+	    disk_size = 20,
+	    count = 1
 	  }
-          login  = { 
-	    type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login), 
-	    tags = ["login", "public", "proxy"], 
-	    count = 1 
+          login  = {
+	    type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login),
+	    tags = ["login", "public", "proxy"],
+	    count = 1
 	  }
           nodecpu   = {
             type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
