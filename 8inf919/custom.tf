@@ -1,13 +1,13 @@
 locals {
   custom = {
-    ncpu = 1
+    ncpu = 0
     ncpupool = 15
     ngpu = 0
     ngpupool = 0
     home_size = 100
     project_size = 1000
     scratch_size = 500
-    nlogin = 0
+    nlogin = 1
 
     instances_type_map = {
       beluga = {
