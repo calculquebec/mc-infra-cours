@@ -3,12 +3,12 @@ name: Linting
 # yamllint disable-line rule:truthy
 on:
   push:
-    branches: [ "2024-3" ]
+    branches: ["2024-3"]
     paths:
       - '**.yaml'
       - '**.yml'
   pull_request:
-    branches: [ "2024-3" ]
+    branches: ["2024-3"]
     paths:
       - '**.yaml'
       - '**.yml'
