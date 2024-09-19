@@ -1,25 +1,41 @@
 jupyterhub::jupyterhub_config_hash:
         SbatchForm:
-                runtime:
-                        min: 3.5
-                        def: 3.5
-                        max: 5.0
-                nprocs:
-                        min: 1
-                        def: 1
-                        max: 1
-                memory:
-                        min: 1024
-                        max: 2048
-                        def: 2048
-                oversubscribe:
-                        def: false
-                        lock: false
-                ui:
-                        def: 'terminal'
+        account:
+            def: 'def-sponsor00'
+        runtime:
+            min: 3.5
+            def: 4.0
+            max: 5.0
+        nprocs:
+            min: 1
+            def: 1
+            max: 1
+        memory:
+            min: 1024
+            max: 1024
+            def: 1024
+        oversubscribe:
+            def: true
+            lock: true
+        partition:
+            def: 'node'
+            lock: true
+        ui:
+            def: 'terminal'
 
 profile::freeipa::mokey::require_verify_admin: false
 profile::users::ldap::users:
     user:
         count: 80
+        passwd: "%{alias('passwd_user')}"
+        groups: ['def-sponsor00']
+
+    instructor:
+        passwd: "%{alias('passwd_instructor')}"
+        groups: ['def-sponsor00', 'helper']
+
+    helper:
+        count: 4
+        passwd: "%{alias('passwd_helper')}"
+        groups: ['def-sponsor00', 'helper']
 
