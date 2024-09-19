@@ -1,0 +1,25 @@
+jupyterhub::jupyterhub_config_hash:
+        SbatchForm:
+                runtime:
+                        min: 3.5
+                        def: 3.5
+                        max: 5.0
+                nprocs:
+                        min: 1
+                        def: 1
+                        max: 1
+                memory:
+                        min: 1024
+                        max: 2048
+                        def: 2048
+                oversubscribe:
+                        def: false
+                        lock: false
+                ui:
+                        def: 'terminal'
+
+profile::freeipa::mokey::require_verify_admin: false
+profile::users::ldap::users:
+    user:
+        count: 80
+
