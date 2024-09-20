@@ -24,24 +24,25 @@ profile::freeipa::mokey::require_verify_admin: false
 profile::software_stack::lmod_default_modules: ['StdEnv/2023', 'gcc/12.3', 'openmpi/4.1.5', 'python/3.10', 'ipython-kernel/3.10']
 
 profile::users::ldap::users:
-    dummy_cours1:
-        count: 1
-        groups: ['def-cours1']
+        dummy_cours1:
+                count: 1
+                groups: ['def-cours1']
 
-    dummy_cours2:
-        groups: ['def-cours2']
+        dummy_cours2:
+                count: 1
+                groups: ['def-cours2']
 
-    dummy_cours3:
-        count: 1
-        groups: ['def-cours3']
+        dummy_cours3:
+                count: 1
+                groups: ['def-cours3']
 
 profile::slurm::accounting::accounts:
-    def-cours1:
-        Fairshare: 1
-        MaxJobs: 1
-    def-cours2:
-        Fairshare: 1
-        MaxJobs: 10
-    def-cours3:
-        Fairshare: 1
-        MaxJobs: 10
+        def-cours1:
+                Fairshare: 1
+                MaxJobs: 1
+        def-cours2:
+                Fairshare: 1
+                MaxJobs: 10
+        def-cours3:
+                Fairshare: 1
+                MaxJobs: 10
