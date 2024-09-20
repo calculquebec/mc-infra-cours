@@ -17,6 +17,9 @@ jupyterhub::jupyterhub_config_hash:
         oversubscribe:
             def: true
             lock: true
+        partition:
+            def: 'nodecpu'
+            lock: true
         ui:
             def: 'terminal'
 
