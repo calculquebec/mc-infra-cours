@@ -1,5 +1,5 @@
 locals {
-  name = "CDSI_intro_hpc"
+  name = "cdsi-intro-hpc"
 
   custom = {
     ncpu = 2
