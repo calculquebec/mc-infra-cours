@@ -17,15 +17,10 @@ jupyterhub::jupyterhub_config_hash:
         oversubscribe:
             def: true
             lock: true
-        partition:
-            def: 'node'
-            lock: true
         ui:
             def: 'terminal'
-    SlurmFormSpawner:
-        disable_form: true
 
-profile::freeipa::mokey::require_verify_admin: false
+profile::freeipa::mokey::require_verify_admin: true
 profile::users::ldap::users:
     user:
         count: 80
