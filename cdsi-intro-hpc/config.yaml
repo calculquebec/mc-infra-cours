@@ -22,6 +22,8 @@ jupyterhub::jupyterhub_config_hash:
             lock: true
         ui:
             def: 'terminal'
+    SlurmFormSpawner:
+        disable_form: true
 
 profile::freeipa::mokey::require_verify_admin: false
 profile::users::ldap::users:
