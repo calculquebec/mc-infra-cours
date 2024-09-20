@@ -18,12 +18,12 @@ jupyterhub::jupyterhub_config_hash:
             def: true
             lock: true
         partition:
-            def: 'node'
-            lock: true
+            def: 'nodecpu'
+            lock: false
         ui:
             def: 'terminal'
 
-profile::freeipa::mokey::require_verify_admin: false
+profile::freeipa::mokey::require_verify_admin: true
 profile::users::ldap::users:
     user:
         count: 80
