@@ -9,5 +9,5 @@ locals {
     scratch_size = 50
   }
 
-  name = "inf1571"
+  name = "inf5171"
 }
