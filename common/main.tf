@@ -104,7 +104,7 @@ locals {
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           }
           nodegpupool   = {
-            type = try(local.custom.instances_type_map.arbutus.cpupool, local.default_pod.instances_type_map.arbutus.cpupool),
+            type = try(local.custom.instances_type_map.arbutus.gpupool, local.default_pod.instances_type_map.arbutus.gpupool),
             tags = ["node", "pool"],
             count = try(local.custom.ngpupool, local.default_pod.ngpupool),
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
