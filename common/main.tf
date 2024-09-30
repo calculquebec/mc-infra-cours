@@ -82,7 +82,7 @@ locals {
         mgmt = "ha4-15gb"
         login = "ha4-15gb"
         cpu = "c8-30gb"
-        cpupool = "c8-30gb""
+        cpupool = "c8-30gb"
         gpu = "gpu16-240-3375gb-a100x1"
         gpupool = "gpu16-240-3375gb-a100x1"
         gpupool16 = "gpu16-240-3375gb-a100x1"
