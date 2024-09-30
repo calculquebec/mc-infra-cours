@@ -1,7 +1,7 @@
 locals {
   custom = {
     n = {
-      cpu = 1
+      cpu = 0
       cpupool = 1
       gpupool16 = 1
       gpupool12 = 1
@@ -17,7 +17,7 @@ locals {
       scratch = "4g"
     }
 
-    image_cpu = "Rocky-8" #snapshot-cpunode-2024-R810.4"
+    image_cpu = "snapshot-cpunode-2024-R810.5"
     image_gpu = "Rocky-8" #snapshot-gpunode-2024-R810.4"
 
     config_version = "ef3e870"
