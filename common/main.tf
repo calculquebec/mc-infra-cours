@@ -98,6 +98,21 @@ locals {
       gpupool80 = { "1g.10gb" = 7 }
       gpupool12 = { "1g.5gb" = 7 }
     }
+
+    network_map = {
+      arbutus = {
+        subnet_id = null
+	os_ext_network = null
+      }
+      beluga = {
+        subnet_id = null
+	os_ext_network = null
+      }
+      juno = {
+        subnet_id = "40981fb8-8421-455f-b691-75e5f52545f5"
+	os_ext_network = "Public-Network"
+      }
+    }
   }
 
   default = {
@@ -323,6 +338,9 @@ module "openstack" {
   guest_passwd = ""
 
   hieradata = local.hieradata
+
+  subnet_id = local.default_pod.network_map[var.cloud_name].subnet_id
+  os_ext_network = local.default_pod.network_map[var.cloud_name].os_ext_network
 }
 
 output "accounts" {
