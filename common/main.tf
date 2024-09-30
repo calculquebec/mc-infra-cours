@@ -256,7 +256,6 @@ locals {
             count = try(local.custom.n.gpupool12, 0),
             mig = try(local.custom.mig.gpupool12, local.default_pod.mig.gpupool12)
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
-            disk_size = "50"
           }
           nodegpupool80   = {
             type = try(local.custom.instances_type_map.juno.gpupool80, local.default_pod.instances_type_map.juno.gpupool80),
@@ -264,7 +263,6 @@ locals {
             count = try(local.custom.n.gpupool80, 0),
             mig = try(local.custom.mig.gpupool80, local.default_pod.mig.gpupool80)
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
-            disk_size = "50"
           }
       }
     }
