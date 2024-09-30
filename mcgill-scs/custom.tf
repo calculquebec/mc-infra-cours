@@ -18,7 +18,7 @@ locals {
     }
 
     image_cpu = "Rocky-8" #snapshot-cpunode-2024-R810.4"
-    image_gpu = "Rocky-82 #snapshot-gpunode-2024-R810.4"
+    image_gpu = "Rocky-8" #snapshot-gpunode-2024-R810.4"
 
     config_version = "ef3e870"
   }
