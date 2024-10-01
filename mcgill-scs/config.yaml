@@ -15,6 +15,9 @@ jupyterhub::jupyterhub_config_hash:
     oversubscribe:
       def: true
       lock: true
+    gpus:
+      def: 'gpu:0'
+      choices: ['gpu:0', 'gpu:1g.5gb:1', 'gpu:3g.20gb:1', 'gpu:4g.20gb:1', 'gpu:2g.20gb:1' ]
     ui:
       def: 'lab'
   SlurmFormSpawner:

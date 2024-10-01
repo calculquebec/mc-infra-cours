@@ -3,9 +3,9 @@ locals {
     n = {
       cpu = 0
       cpupool = 2
-      gpupool16 = 2
-      gpupool12 = 2
-      gpupool80 = 2
+      gpupool16 = 16
+      gpupool12 = 4
+      gpupool80 = 8
     }
     home_size = 100
     project_size = 500
@@ -15,6 +15,12 @@ locals {
       home = "1g"
       project = "2g"
       scratch = "4g"
+    }
+
+    mig = {
+      gpupool16 = { "1g.5gb" = 7 }
+      gpupool12 = { "3g.20gb" = 1, "4g.20gb" = 1 }
+      gpupool80 = { "2g.20gb" = 3 }
     }
 
     image_cpu = "snapshot-cpunode-2024-R810.5"
