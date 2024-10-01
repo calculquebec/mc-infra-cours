@@ -3,9 +3,9 @@ locals {
     n = {
       cpu = 0
       cpupool = 0
-      gpupool16 = 0 #16
-      gpupool12 = 0 #4
-      gpupool80 = 0 #8
+      gpupool16 = 16
+      gpupool12 = 4
+      gpupool80 = 8
     }
     home_size = 100
     project_size = 500
