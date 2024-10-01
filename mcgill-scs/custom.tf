@@ -2,7 +2,7 @@ locals {
   custom = {
     n = {
       cpu = 0
-      cpupool = 2
+      cpupool = 0
       gpupool16 = 16
       gpupool12 = 4
       gpupool80 = 8
