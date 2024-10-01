@@ -59,7 +59,7 @@ locals {
     }
 
     cluster_purpose = "cours_academiques"
-    config_version = "1ba3a12"
+    config_version = "2972853"
     
     instances_type_map = {
       arbutus = {

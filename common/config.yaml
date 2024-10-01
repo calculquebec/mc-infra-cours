@@ -7,7 +7,8 @@ jupyterhub::jupyterhub_config_hash:
 profile::freeipa::mokey::require_verify_admin: false
 profile::slurm::base::slurm_version: '23.02'
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
-profile::slurm::base::suspend_time: 900
+profile::slurm::base::suspend_time: 10800
+profile::gpu::install::passthrough::nvidia_driver_stream: '550-dkms'
 
 prometheus::global_config:
   scrape_interval: '1m'
@@ -25,13 +26,3 @@ prometheus::remote_write_configs:
       username: 'cqformation'
       password: "%{alias('prometheus_password')}"
 
-profile::gpu::install::passthrough::packages:
-  - nvidia-driver-cuda
-  - nvidia-driver-cuda-libs
-  - nvidia-driver
-  - nvidia-driver-devel
-  - nvidia-driver-libs
-  - nvidia-driver-NVML
-  - nvidia-modprobe
-  - nvidia-xconfig
-  - nvidia-persistenced
