@@ -1,7 +1,7 @@
 locals {
   custom = {
     n = {
-      cpu = 1
+      cpu = 0
       cpupool = 1
       gpu = 0
       gpupool = 1
