@@ -18,9 +18,9 @@ locals {
     }
 
     mig = {
-      gpupool12 = null #{ "1g.5gb" = 7 }
-      gpupool16 = null #{ "3g.20gb" = 1, "4g.20gb" = 1 }
-      gpupool80 = null #{ "1g.10gb" = 1, "2g.20gb" = 3 }
+      gpupool16 = { "1g.5gb" = 7 }
+      gpupool12 = { "3g.20gb" = 1, "4g.20gb" = 1 }
+      gpupool80 = { "1g.10gb" = 1, "2g.20gb" = 3 }
     }
 
     image_cpu = "snapshot-cpunode-2024-R810.5"
