@@ -18,13 +18,13 @@ locals {
     }
 
     mig = {
-      gpupool12 = { "1g.5gb" = 7 }
-      gpupool16 = { "3g.20gb" = 1, "4g.20gb" = 1 }
+      gpupool16 = { "1g.5gb" = 7 }
+      gpupool12 = { "3g.20gb" = 1, "4g.20gb" = 1 }
       gpupool80 = { "2g.20gb" = 3 }
     }
 
     image_cpu = "snapshot-cpunode-2024-R810.5"
-    image_gpu = "Rocky-8" #snapshot-gpunode-2024-R810.5"
+    image_gpu = "snapshot-gpunode-2024-R810.5"
 
     config_version = "2972853"
   }
