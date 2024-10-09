@@ -76,8 +76,6 @@ locals {
         login = "p4-7.5gb"
         cpu = "c8-60gb"
         cpupool = "c8-60gb"
-        gpu = "gpu32-240-3450gb-a100x1"
-        gpupool = "gpu32-240-3450gb-a100x1"
       }
       juno = {
         mgmt = "ha4-15gb"
@@ -182,22 +180,6 @@ locals {
             tags = ["node", "pool"],
             count = try(local.custom.n.cpupool, local.default_pod.n.cpupool),
             image = try(local.custom.image_cpu, local.default_pod.image_cpu),
-          }
-          nodegpu   = {
-            type = try(local.custom.instances_type_map.beluga.gpu, local.default_pod.instances_type_map.beluga.gpu),
-            tags = ["node"],
-            count = try(local.custom.n.gpu, local.default_pod.n.gpu),
-            mig = try(local.custom.mig.gpu, local.default_pod.mig.gpu)
-            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
-            disk_size = "50"
-          }
-          nodegpupool   = {
-            type = try(local.custom.instances_type_map.beluga.gpupool, local.default_pod.instances_type_map.beluga.gpupool),
-            tags = ["node", "pool"],
-            count = try(local.custom.n.gpupool, local.default_pod.n.gpupool),
-            mig = try(local.custom.mig.gpupool, local.default_pod.mig.gpupool)
-            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
-            disk_size = "50"
           }
       }
       juno = {
