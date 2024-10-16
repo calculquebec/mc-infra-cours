@@ -10,6 +10,7 @@ locals {
     home_size = 100
     project_size = 500
     scratch_size = 400
+    nb_users = 1
 
     user_quotas = {
       home = "1g"
