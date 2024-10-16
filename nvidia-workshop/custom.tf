@@ -7,6 +7,7 @@ locals {
       gpupool12 = 4
       gpupool80 = 8
     }
+    cluster_purpose = "internal"
     home_size = 50
     project_size = 50
     scratch_size = 50
