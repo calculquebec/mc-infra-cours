@@ -53,6 +53,3 @@ profile::slurm::accounting::accounts:
     Fairshare: 1
     MaxJobs: 10
 
-profile::slurm::accounting::options:
-  MaxTRESRunMinsPerUser: gres/gpu=15
-
