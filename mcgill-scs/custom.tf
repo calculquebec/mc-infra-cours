@@ -20,7 +20,7 @@ locals {
 
     mig = {
       gpupool16 = { "1g.5gb" = 7 }
-      gpupool12 = { "3g.20gb" = 2 }
+      gpupool12 = { "1g.5gb" = 7 }
       gpupool80 = { "2g.20gb" = 3 }
     }
 
