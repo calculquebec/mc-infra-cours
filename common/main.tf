@@ -47,6 +47,8 @@ locals {
       gpupool12 = 0
       gpupool16 = 0
       gpupool80 = 0
+      gpupool16-cq = 0
+      gpupool12-j = 0
     }
     
     home_size = 100
@@ -88,6 +90,8 @@ locals {
         gpupool16 = "gpu16-240-3375gb-a100x1"
         gpupool80 = "gpu13-240-2500gb-a100-80gx1"
         gpupool12 = "gpu12-120-850gb-a100x1"
+	gpupool16-cq = "gpu16-240-3450gb-a100x1_cq"
+	gpupool12-j = "gpu12-120-850gb-a100x1_jacobb"
       }
     }
 
@@ -97,6 +101,8 @@ locals {
       gpupool16 = { "1g.5gb" = 7 }
       gpupool80 = { "1g.10gb" = 7 }
       gpupool12 = { "1g.5gb" = 7 }
+      gpupool16-cq = { "1g.5gb" = 7 }
+      gpupool12-j = { "1g.5gb" = 7 }
     }
 
     network_map = {
@@ -234,11 +240,27 @@ locals {
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
             disk_size = "50"
           }
+          nodegpupool16-cq   = {
+            type = try(local.custom.instances_type_map.juno.gpupool16-cq, local.default_pod.instances_type_map.juno.gpupool16-cq),
+            tags = ["node", "pool"],
+            count = try(local.custom.n.gpupool16-cq, 0),
+            mig = try(local.custom.mig.gpupool16-cq, local.default_pod.mig.gpupool16-cq)
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+            disk_size = "50"
+          }
           nodegpupool12   = {
             type = try(local.custom.instances_type_map.juno.gpupool12, local.default_pod.instances_type_map.juno.gpupool12),
             tags = ["node", "pool"],
             count = try(local.custom.n.gpupool12, 0),
             mig = try(local.custom.mig.gpupool12, local.default_pod.mig.gpupool12)
+            image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+            disk_size = "50"
+          }
+          nodegpupool12-j   = {
+            type = try(local.custom.instances_type_map.juno.gpupool12-j, local.default_pod.instances_type_map.juno.gpupool12-j),
+            tags = ["node", "pool"],
+            count = try(local.custom.n.gpupool12-j, 0),
+            mig = try(local.custom.mig.gpupool12-j, local.default_pod.mig.gpupool12-j)
             image = try(local.custom.image_gpu, local.default_pod.image_gpu),
             disk_size = "50"
           }

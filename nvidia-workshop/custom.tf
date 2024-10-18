@@ -4,7 +4,9 @@ locals {
       cpu = 0
       cpupool = 0
       gpupool16 = 16
+      gpupool16-cq = 4
       gpupool12 = 4
+      gpupool12-j = 20
       gpupool80 = 8
     }
     cluster_purpose = "internal"
@@ -20,7 +22,9 @@ locals {
 
     mig = {
       gpupool16 = { "1g.5gb" = 7 }
+      gpupool16-cq = { "1g.5gb" = 7 }
       gpupool12 = { "3g.20gb" = 2 }
+      gpupool12-j = { "1g.5gb" = 7 }
       gpupool80 = { "2g.20gb" = 3 }
     }
 
