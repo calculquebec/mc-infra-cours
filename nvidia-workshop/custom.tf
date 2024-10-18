@@ -22,6 +22,7 @@ locals {
     }
 
     mig = {
+      gpu = { "1g.5gb" = 7 }
       gpupool16 = { "1g.5gb" = 7 }
       gpupool16-cq = { "1g.5gb" = 7 }
       gpupool12 = { "3g.20gb" = 2 }
