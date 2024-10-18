@@ -20,7 +20,12 @@ locals {
       project = "1g"
       scratch = "1g"
     }
-
+    
+    instances_type_map = {
+      juno = {
+        gpu = "gpu12-120-850gb-a100x1"
+      }
+    }
     mig = {
       gpu = { "1g.5gb" = 7 }
       gpupool16 = { "1g.5gb" = 7 }
