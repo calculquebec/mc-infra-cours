@@ -91,7 +91,7 @@ locals {
         gpupool80 = "gpu13-240-2500gb-a100-80gx1"
         gpupool12 = "gpu12-120-850gb-a100x1"
 	gpupool16-cq = "gpu16-240-3450gb-a100x1_cq"
-	gpupool12-j = "gpu12-120-850gb-a100x1_jacobb"
+	gpupool12-j = "gpu12-120-850gb-a100x1_j"
       }
     }
 
