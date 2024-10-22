@@ -8,7 +8,7 @@ locals {
       gpupool16-cq = 4
       gpupool12 = 4
       gpupool12-j = 20
-      gpupool80 = 8
+      gpupool80 = 0
     }
     cluster_purpose = "internal"
     home_size = 50

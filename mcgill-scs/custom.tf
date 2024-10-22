@@ -5,7 +5,7 @@ locals {
       cpupool = 0
       gpupool16 = 16
       gpupool12 = 4
-      gpupool80 = 8
+      gpupool80 = 0
     }
     home_size = 100
     project_size = 500
