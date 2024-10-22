@@ -3,8 +3,10 @@ locals {
     n = {
       cpu = 0
       cpupool = 0
-      gpupool16 = 16
-      gpupool12 = 4
+      gpupool16 = 6
+      gpupool16-cq = 4
+      gpupool12 = 2
+      gpupool12-j = 8
       gpupool80 = 0
     }
     home_size = 100
@@ -19,9 +21,10 @@ locals {
     }
 
     mig = {
+      gpupool16-cq = { "1g.5gb" = 7 }
       gpupool16 = { "1g.5gb" = 7 }
-      gpupool12 = { "1g.5gb" = 7 }
-      gpupool80 = { "2g.20gb" = 3 }
+      gpupool12 = { "3g.20gb" = 2 }
+      gpupool12-j = { "1g.5gb" = 7 }
     }
 
     image_cpu = "snapshot-cpunode-2024-R810.5"
