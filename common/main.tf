@@ -38,7 +38,7 @@ locals {
     image_gpu = "snapshot-gpunode-2024-R810.5"
     nb_users = 0
 
-    n = {
+    nnodes = {
       cpu = 0
       gpu = 0
       cpupool = 0
@@ -134,30 +134,30 @@ locals {
           type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login),
           tags = ["login", "public", "proxy"],
           disk_size = 20,
-          count = try(local.custom.n.login, local.default_pod.n.login)
+          count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.arbutus.cpu, local.default_pod.instances_type_map.arbutus.cpu),
           tags = ["node"],
-          count = try(local.custom.n.cpu, local.default_pod.n.cpu),
+          count = try(local.custom.nnodes.cpu, local.default_pod.nnodes.cpu),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
         nodecpupool = {
           type = try(local.custom.instances_type_map.arbutus.cpupool, local.default_pod.instances_type_map.arbutus.cpupool),
           tags = ["node", "pool"],
-          count = try(local.custom.n.cpupool, local.default_pod.n.cpupool),
+          count = try(local.custom.nnodes.cpupool, local.default_pod.nnodes.cpupool),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
         nodegpu = {
           type = try(local.custom.instances_type_map.arbutus.gpu, local.default_pod.instances_type_map.arbutus.gpu),
           tags = ["node"],
-          count = try(local.custom.n.gpu, local.default_pod.n.gpu),
+          count = try(local.custom.nnodes.gpu, local.default_pod.nnodes.gpu),
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
         }
         nodegpupool = {
           type = try(local.custom.instances_type_map.arbutus.gpupool, local.default_pod.instances_type_map.arbutus.gpupool),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool, local.default_pod.n.gpupool),
+          count = try(local.custom.nnodes.gpupool, local.default_pod.nnodes.gpupool),
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
         }
       }
@@ -172,20 +172,20 @@ locals {
           type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login),
           tags = ["login", "public", "proxy"],
           disk_size = 20,
-          count = try(local.custom.n.login, local.default_pod.n.login)
+          count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
           disk_size = 20
           tags = ["node"],
-          count = try(local.custom.n.cpu, local.default_pod.n.cpu),
+          count = try(local.custom.nnodes.cpu, local.default_pod.nnodes.cpu),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
         nodecpupool = {
           type = try(local.custom.instances_type_map.beluga.cpupool, local.default_pod.instances_type_map.beluga.cpupool),
           disk_size = 20
           tags = ["node", "pool"],
-          count = try(local.custom.n.cpupool, local.default_pod.n.cpupool),
+          count = try(local.custom.nnodes.cpupool, local.default_pod.nnodes.cpupool),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
       }
@@ -200,26 +200,26 @@ locals {
           type = try(local.custom.instances_type_map.juno.login, local.default_pod.instances_type_map.juno.login),
           tags = ["login", "public", "proxy"],
           disk_size = 20,
-          count = try(local.custom.n.login, local.default_pod.n.login)
+          count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.juno.cpu, local.default_pod.instances_type_map.juno.cpu),
           disk_size = 20
           tags = ["node"],
-          count = try(local.custom.n.cpu, local.default_pod.n.cpu),
+          count = try(local.custom.nnodes.cpu, local.default_pod.nnodes.cpu),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
         nodecpupool = {
           type = try(local.custom.instances_type_map.juno.cpupool, local.default_pod.instances_type_map.juno.cpupool),
           disk_size = 20
           tags = ["node", "pool"],
-          count = try(local.custom.n.cpupool, local.default_pod.n.cpupool),
+          count = try(local.custom.nnodes.cpupool, local.default_pod.nnodes.cpupool),
           image = try(local.custom.image_cpu, local.default_pod.image_cpu),
         }
         nodegpu = {
           type = try(local.custom.instances_type_map.juno.gpu, local.default_pod.instances_type_map.juno.gpu),
           tags = ["node"],
-          count = try(local.custom.n.gpu, local.default_pod.n.gpu),
+          count = try(local.custom.nnodes.gpu, local.default_pod.nnodes.gpu),
           mig = try(local.custom.mig.gpu, local.default_pod.mig.gpu)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -227,7 +227,7 @@ locals {
         nodegpupool = {
           type = try(local.custom.instances_type_map.juno.gpupool, local.default_pod.instances_type_map.juno.gpupool16),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool, 0),
+          count = try(local.custom.nnodes.gpupool, 0),
           mig = try(local.custom.mig.gpupool, local.default_pod.mig.gpupool)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -235,7 +235,7 @@ locals {
         nodegpupool16 = {
           type = try(local.custom.instances_type_map.juno.gpupool16, local.default_pod.instances_type_map.juno.gpupool16),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool16, 0),
+          count = try(local.custom.nnodes.gpupool16, 0),
           mig = try(local.custom.mig.gpupool16, local.default_pod.mig.gpupool16)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -243,7 +243,7 @@ locals {
         nodegpupool16-cq = {
           type = try(local.custom.instances_type_map.juno.gpupool16-cq, local.default_pod.instances_type_map.juno.gpupool16-cq),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool16-cq, 0),
+          count = try(local.custom.nnodes.gpupool16-cq, 0),
           mig = try(local.custom.mig.gpupool16-cq, local.default_pod.mig.gpupool16-cq)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -251,7 +251,7 @@ locals {
         nodegpupool12 = {
           type = try(local.custom.instances_type_map.juno.gpupool12, local.default_pod.instances_type_map.juno.gpupool12),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool12, 0),
+          count = try(local.custom.nnodes.gpupool12, 0),
           mig = try(local.custom.mig.gpupool12, local.default_pod.mig.gpupool12)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -259,7 +259,7 @@ locals {
         nodegpupool12-j = {
           type = try(local.custom.instances_type_map.juno.gpupool12-j, local.default_pod.instances_type_map.juno.gpupool12-j),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool12-j, 0),
+          count = try(local.custom.nnodes.gpupool12-j, 0),
           mig = try(local.custom.mig.gpupool12-j, local.default_pod.mig.gpupool12-j)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
@@ -267,7 +267,7 @@ locals {
         nodegpupool80 = {
           type = try(local.custom.instances_type_map.juno.gpupool80, local.default_pod.instances_type_map.juno.gpupool80),
           tags = ["node", "pool"],
-          count = try(local.custom.n.gpupool80, 0),
+          count = try(local.custom.nnodes.gpupool80, 0),
           mig = try(local.custom.mig.gpupool80, local.default_pod.mig.gpupool80)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
           disk_size = "50"
