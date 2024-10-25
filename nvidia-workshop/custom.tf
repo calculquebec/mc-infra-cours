@@ -36,8 +36,8 @@ locals {
     }
 
     image_cpu = "snapshot-cpunode-2024-R810.5"
-    #image_gpu = "Rocky-8.10"
-    image_gpu = "snapshot-gpunode-2024-R810.5"
+    image_gpu = "Rocky-8.10"
+    #image_gpu = "snapshot-gpunode-2024-R810.5"
 
     config_version = "dc6b37f4d2c077a37d88bf4862ba57a09eed7213"
   }
