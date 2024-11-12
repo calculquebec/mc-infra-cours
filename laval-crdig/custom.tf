@@ -2,8 +2,13 @@ locals {
   name = "laval-crdig"
   
   custom = {
-    ncpu = 1
-    ngpu = 1
-    ngpupool = 20
+    nnodes = {
+      cpu = 1
+      gpupool16-cq = 3
+    }
+    nb_users = 20
+    mig = {
+      gpupool16-cq = { "1g.5gb" = 7 }
+    }
   }
 }
