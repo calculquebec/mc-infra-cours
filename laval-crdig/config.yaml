@@ -16,10 +16,10 @@ jupyterhub::jupyterhub_config_hash:
       def: 1024
     oversubscribe:
       def: true
-        lock: true
+      lock: true
     partition:
       def: 'nodecpu'
-        lock: true
+      lock: true
     ui:
       def: 'terminal'
   SlurmFormSpawner:
