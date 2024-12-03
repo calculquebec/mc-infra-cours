@@ -1,8 +1,8 @@
 locals {
   custom = {
     nnodes = {
-      cpu = 1
-      cpupool = 1
+      cpu = 0
+      cpupool = 15
     }
     home_size = 50
     project_size = 1000
