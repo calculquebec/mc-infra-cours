@@ -20,8 +20,6 @@ jupyterhub::jupyterhub_config_hash:
         SlurmFormSpawner:
                 disable_form: false
 
-profile::freeipa::mokey::require_verify_admin: false
-
 profile::users::ldap::users:
         dummy_cours1:
                 count: 1

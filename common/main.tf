@@ -33,7 +33,7 @@ data "tfe_workspace" "current" {
 
 locals {
   default_pod = {
-    image = "Rocky-8"
+    image = "AlmaLinux-9.4"
     image_cpu = "snapshot-cpunode-2024-R810.5"
     image_gpu = "snapshot-gpunode-2024-R810.5"
     nb_users = 0
@@ -63,7 +63,7 @@ locals {
 
     cluster_purpose = "cours_academiques"
     config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-    config_version = "2972853"
+    config_version = "14.1.2"
 
     instances_type_map = {
       arbutus = {
@@ -320,7 +320,7 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.0.0-beta"
+  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.1.2"
   config_git_url = try(local.custom.config_git_url, local.default_pod.config_git_url)
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
