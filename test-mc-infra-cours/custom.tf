@@ -14,6 +14,13 @@ locals {
 
 #    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
 #    config_version = "1b45e1f"
+
+    instances_type_map = {
+      juno = {
+        gpu = "gpu12-120-850gb-a100x1"
+      }
+    }
+
     volumes = {
       nfs = {
         home = { size = 50, quota = "1g" }
