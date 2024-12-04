@@ -1,0 +1,21 @@
+jupyterhub::jupyterhub_config_hash:
+        SbatchForm:
+                runtime:
+                        min: 3.5
+                        def: 3.5
+                        max: 5.0
+                nprocs:
+                        min: 1
+                        def: 1
+                        max: 8
+                memory:
+                        min: 1024
+                        max: 30000
+                        def: 2048
+                oversubscribe:
+                        def: true
+                        lock: false
+                ui:
+                        def: 'lab'
+        SlurmFormSpawner:
+                disable_form: false
