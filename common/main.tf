@@ -36,7 +36,7 @@ locals {
     image = "AlmaLinux-9.4"
     image_cpu = "snapshot-cpunode-2025-A9.4-1"
     image_gpu = "snapshot-gpunode-2025-A9.4-1"
-    nb_users = 0
+    nb_users = 1
 
     nnodes = {
       cpu = 0
