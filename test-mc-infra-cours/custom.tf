@@ -4,7 +4,7 @@ locals {
       cpu = 1
       cpupool = 1
       gpu = 1
-      gpupool = 1
+      gpupool = 8
     }
 #    home_size = 100
 #    project_size = 100
@@ -17,7 +17,7 @@ locals {
 
     instances_type_map = {
       juno = {
-        gpu = "gpu12-120-850gb-a100x1"
+        gpu = "gpu12-120-850gb-a100x1_MC"
       }
     }
 
