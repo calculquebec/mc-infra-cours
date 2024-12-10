@@ -13,7 +13,7 @@ locals {
     image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
 #    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-#    config_version = "1b45e1f"
+    config_version = "b9b05ca"
 
     instances_type_map = {
       juno = {
