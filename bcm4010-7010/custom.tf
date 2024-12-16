@@ -2,10 +2,10 @@ locals {
   custom = {
     nnodes = {
       cpu = 0
-      cpupool = 2
+      cpupool = 17
     }
     home_size = 50
-    project_size = 1000
+    project_size = 100
     scratch_size = 100
 
     instances_type_map = {
