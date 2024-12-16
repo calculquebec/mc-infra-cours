@@ -64,7 +64,7 @@ locals {
     cluster_purpose = "cours_academiques"
     config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
     # for kernels bugfix
-    config_version = "b9b05ca"
+    config_version = "7ef09d0"
 
     instances_type_map = {
       arbutus = {
