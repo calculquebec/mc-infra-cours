@@ -1,0 +1,53 @@
+jupyterhub::jupyterhub_config_hash:
+        SbatchForm:
+                runtime:
+                        min: 3.5
+                        def: 3.5
+                        max: 5.0
+                nprocs:
+                        min: 1
+                        def: 1
+                        max: 8
+                memory:
+                        min: 1024
+                        max: 30000
+                        def: 2048
+                oversubscribe:
+                        def: true
+                        lock: false
+                gpus: 
+                        def: 'gpu:0'
+                        choices: ['gpu:0', 'gpu:2g.10gb:1']
+                ui:
+                        def: 'lab'
+        SlurmFormSpawner:
+                disable_form: false
+
+profile::software_stack::lmod_default_modules:
+  - 'StdEnv/2023'
+  - 'gcc'
+  - 'mii'
+  - 'python/3.11'
+  - 'opencv/4.10.0'
+
+jupyterhub::kernel::venv::packages:
+  - 'numpy<2'
+  - 'matplotlib'
+  - 'scikit-learn'
+  - 'pandas'
+  - 'scipy'
+  - 'tqdm'
+  - 'gzip'
+  - 'kagglehub'
+  - 'ipywidgets'
+  - 'tifffile'
+  - 'torch==2.5.1'
+  - 'torchvision'
+  - 'tensorflow==2.17.0'
+  - 'pillow'
+  - 'grad-cam'
+
+jupyterhub::kernel::venv::pip_environment:
+  PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
+  EBPYTHONPREFIXES: /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/scipy-stack/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/ipykernel/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcc12/opencv/4.10.0
+
