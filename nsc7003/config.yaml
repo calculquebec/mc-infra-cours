@@ -37,7 +37,6 @@ jupyterhub::kernel::venv::packages:
   - 'pandas'
   - 'scipy'
   - 'tqdm'
-  - 'gzip'
   - 'kagglehub'
   - 'ipywidgets'
   - 'tifffile'
@@ -46,6 +45,9 @@ jupyterhub::kernel::venv::packages:
   - 'tensorflow==2.17.0'
   - 'pillow'
   - 'grad-cam'
+  - 'antropy'
+  - 'ucimlrepo'
+  - 'umap-learn'
 
 jupyterhub::kernel::venv::pip_environment:
   PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
