@@ -106,6 +106,16 @@ locals {
       gpupool12-j = { "1g.5gb" = 7 }
     }
 
+    shard = {
+      gpu = null
+      gpupool = null
+      gpupool16 = null
+      gpupool80 = null
+      gpupool12 = null
+      gpupool16-cq = null
+      gpupool12-j = null
+    }
+
     network_map = {
       arbutus = {
         subnet_id = null
@@ -154,12 +164,14 @@ locals {
           tags = ["node"],
           count = try(local.custom.nnodes.gpu, local.default_pod.nnodes.gpu),
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpu, local.default_pod.shard.gpu),
         }
         nodegpupool = {
           type = try(local.custom.instances_type_map.arbutus.gpupool, local.default_pod.instances_type_map.arbutus.gpupool),
           tags = ["node", "pool"],
           count = try(local.custom.nnodes.gpupool, local.default_pod.nnodes.gpupool),
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool, local.default_pod.shard.gpupool),
         }
       }
       beluga = {
@@ -223,6 +235,7 @@ locals {
           count = try(local.custom.nnodes.gpu, local.default_pod.nnodes.gpu),
           mig = try(local.custom.mig.gpu, local.default_pod.mig.gpu)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpu, local.default_pod.shard.gpu),
           disk_size = "50"
         }
         nodegpupool = {
@@ -231,6 +244,7 @@ locals {
           count = try(local.custom.nnodes.gpupool, 0),
           mig = try(local.custom.mig.gpupool, local.default_pod.mig.gpupool)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool, local.default_pod.shard.gpupool),
           disk_size = "50"
         }
         nodegpupool16 = {
@@ -239,6 +253,7 @@ locals {
           count = try(local.custom.nnodes.gpupool16, 0),
           mig = try(local.custom.mig.gpupool16, local.default_pod.mig.gpupool16)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool16, local.default_pod.shard.gpupool16),
           disk_size = "50"
         }
         nodegpupool16-cq = {
@@ -247,6 +262,7 @@ locals {
           count = try(local.custom.nnodes.gpupool16-cq, 0),
           mig = try(local.custom.mig.gpupool16-cq, local.default_pod.mig.gpupool16-cq)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool16-cq, local.default_pod.shard.gpupool16-cq),
           disk_size = "50"
         }
         nodegpupool12 = {
@@ -255,6 +271,7 @@ locals {
           count = try(local.custom.nnodes.gpupool12, 0),
           mig = try(local.custom.mig.gpupool12, local.default_pod.mig.gpupool12)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool12, local.default_pod.shard.gpupool12),
           disk_size = "50"
         }
         nodegpupool12-j = {
@@ -263,6 +280,7 @@ locals {
           count = try(local.custom.nnodes.gpupool12-j, 0),
           mig = try(local.custom.mig.gpupool12-j, local.default_pod.mig.gpupool12-j)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool12-j, local.default_pod.shard.gpupool12-j),
           disk_size = "50"
         }
         nodegpupool80 = {
@@ -271,6 +289,7 @@ locals {
           count = try(local.custom.nnodes.gpupool80, 0),
           mig = try(local.custom.mig.gpupool80, local.default_pod.mig.gpupool80)
           image = try(local.custom.image_gpu, local.default_pod.image_gpu),
+	  shard = try(local.custom.shard.gpupool80, local.default_pod.shard.gpupool80),
           disk_size = "50"
         }
       }
