@@ -11,7 +11,7 @@ locals {
       gpu = 12
     }
     mig = {
-      gpu = { "3g.20gb" = 2 }
+      gpu = { null }
     }
 
 #    home_size = 100
