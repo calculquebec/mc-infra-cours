@@ -20,6 +20,9 @@ jupyterhub::jupyterhub_config_hash:
                         choices: ['gpu:0', 'gpu:2g.10gb:1']
                 ui:
                         def: 'lab'
+                partition:
+                        def: 'nodecpu'
+                        lock: false
         SlurmFormSpawner:
                 disable_form: false
 
