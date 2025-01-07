@@ -11,7 +11,7 @@ locals {
       gpu = 12
     }
     mig = {
-      gpu = { null }
+      gpu = { "3g.20gb" = 2 }
     }
 
 #    home_size = 100
@@ -21,7 +21,7 @@ locals {
     image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
 #    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    config_version = "b9b05ca"
+    config_version = "339b915"
 
     instances_type_map = {
       juno = {
