@@ -6,6 +6,10 @@ locals {
       gpu = 1
       gpupool = 16
     }
+    mig = {
+      gpu = { "3g.20gb" = 2 }
+    }
+
 #    home_size = 100
 #    project_size = 100
 #    scratch_size = 50
