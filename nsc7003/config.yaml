@@ -50,6 +50,7 @@ jupyterhub::kernel::venv::packages:
   - 'antropy'
   - 'ucimlrepo'
   - 'umap-learn'
+  - 'seaborn'
 
 jupyterhub::kernel::venv::pip_environment:
   PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
