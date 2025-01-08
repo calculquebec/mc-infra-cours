@@ -3,7 +3,7 @@ locals {
     nnodes = {
       gpu = 0
       gpupool = 4
-      cpupool = 2
+      cpupool = 3
     }
     home_size = 50
     project_size = 500
