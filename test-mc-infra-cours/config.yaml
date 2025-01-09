@@ -43,3 +43,15 @@ profile::slurm::accounting::accounts:
         def-cours3:
                 Fairshare: 1
                 MaxJobs: 10
+
+cron::job:
+  spawn_nodes:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-5] state=power_up'
+    minute: '*/30'
+    hour: '*'
+    date: '*'
+    month: '*'
+    weekday: '4'
+    user: 'root'
+    description: 'spawn nodes every 30 minutes on thursday'
+

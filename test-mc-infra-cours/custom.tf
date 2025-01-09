@@ -5,6 +5,7 @@ locals {
       cpupool = 1
       gpu = 1
       gpupool = 16
+      gpupool16 = 1
     }
 
     shard = {
