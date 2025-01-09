@@ -17,7 +17,7 @@ jupyterhub::jupyterhub_config_hash:
                         lock: false
                 gpus: 
                         def: 'gpu:1g.5gb:1,shard:1'
-                        choices: ['gpu:0', 'gpu:1g.5gb:7', 'gpu:1g.5gb:1,shard:1']
+                        choices: ['gpu:0', 'gpu:1g.5gb:1', 'gpu:1g.5gb:1,shard:1']
                 ui:
                         def: 'lab'
                 partition:
