@@ -16,10 +16,10 @@ locals {
     }
 
     shard = {
-      gpupool = 16
+      gpupool = 2
     }
     mig = {
-      gpupool = { "3g.20gb" = 2 }
+      gpupool = { "1g.5gb" = 7 }
     }
   }
   name = "glo7030"

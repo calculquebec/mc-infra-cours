@@ -16,8 +16,8 @@ jupyterhub::jupyterhub_config_hash:
                         def: true
                         lock: false
                 gpus: 
-                        def: 'gpu:0'
-                        choices: ['gpu:0', 'gpu:3g.20gb:1', 'gpu:3g.20gb:1,shard:1']
+                        def: 'gpu:1g.5gb:1,shard:1'
+                        choices: ['gpu:0', 'gpu:1g.5gb:7', 'gpu:1g.5gb:1,shard:1']
                 ui:
                         def: 'lab'
                 partition:
@@ -52,3 +52,41 @@ jupyterhub::kernel::venv::pip_environment:
 jupyterhub::kernel::venv::kernel_environment:
   PYTHONPATH: "/cvmfs/soft.computecanada.ca/easybuild/python/site-packages:${PYTHONPATH}"
   EBPYTHONPREFIXES: "${SLURM_TMPDIR}:${EBPYTHONPREFIXES}"
+
+cron::job:
+  spawn_nodes_jan:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
+    minute: '25'
+    hour: '8'
+    date: '17,24,31'
+    month: '1'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes at 8:25 on January Fridays'
+  spawn_nodes_feb:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
+    minute: '25'
+    hour: '8'
+    date: '7,14,21,28'
+    month: '2'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes at 8:25 on February Fridays'
+  spawn_nodes_mar:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
+    minute: '25'
+    hour: '8'
+    date: '14,21,28'
+    month: '3'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes at 8:25 on March Fridays'
+  spawn_nodes_apr:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
+    minute: '25'
+    hour: '8'
+    date: '4,11,18,25'
+    month: '4'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes at 8:25 on April Fridays'
