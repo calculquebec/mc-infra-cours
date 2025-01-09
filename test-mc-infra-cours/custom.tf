@@ -6,6 +6,14 @@ locals {
       gpu = 1
       gpupool = 16
     }
+
+    shard = {
+      gpu = 12
+    }
+    mig = {
+      gpu = { "3g.20gb" = 2 }
+    }
+
 #    home_size = 100
 #    project_size = 100
 #    scratch_size = 50
@@ -13,7 +21,7 @@ locals {
     image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
 #    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    config_version = "b9b05ca"
+    config_version = "339b915"
 
     instances_type_map = {
       juno = {
