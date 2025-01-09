@@ -35,3 +35,7 @@ lookup_options:
 jupyterhub::kernel::venv::pip_environment:
   PIP_NO_INDEX: 1
   PIP_CONFIG_FILE: /cvmfs/soft.computecanada.ca/config/python/pip-x86-64-v3-gentoo2023.conf
+
+magic_castle::site::tags:
+  cron:
+    - cron
