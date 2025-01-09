@@ -46,7 +46,7 @@ profile::slurm::accounting::accounts:
 
 cron::job:
   spawn_nodes:
-    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-5] state=power_up'
+    command: '#/opt/software/slurm/bin/scontrol update node=nodegpupool[1-5] state=power_up'
     minute: '*/30'
     hour: '*'
     date: '*'
