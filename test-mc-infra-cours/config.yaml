@@ -52,6 +52,6 @@ cron::job:
     date: '*'
     month: '*'
     weekday: '4'
-    user: 'centos'
+    user: 'root'
     description: 'spawn nodes every 30 minutes on thursday'
 
