@@ -19,7 +19,7 @@ locals {
 #    project_size = 100
 #    scratch_size = 50
     image_cpu = "snapshot-cpunode-2025-A9.4-1"
-    image_gpu = "snapshot-cpunode-2025-A9.4-1"
+    image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
 #    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
     config_version = "339b915"
