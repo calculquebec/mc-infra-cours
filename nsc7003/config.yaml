@@ -58,3 +58,41 @@ jupyterhub::kernel::venv::pip_environment:
 jupyterhub::kernel::venv::kernel_environment:
   PYTHONPATH: "/cvmfs/soft.computecanada.ca/easybuild/python/site-packages:${PYTHONPATH}"
   EBPYTHONPREFIXES: "${SLURM_TMPDIR}:${EBPYTHONPREFIXES}"
+
+cron::job:
+  spawn_nodes_jan:
+    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '15,22,29'
+    month: '1'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for January'
+  spawn_nodes_feb:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '5,12,19,26'
+    month: '2'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for February'
+  spawn_nodes_mar:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '12,19,26'
+    month: '3'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for March'
+  spawn_nodes_apr:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '2,9,16,23'
+    month: '4'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for April'
