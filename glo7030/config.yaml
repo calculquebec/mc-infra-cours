@@ -62,6 +62,7 @@ cron::job:
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:25 on January Fridays'
+    environment: ['CRON_TZ=America/New_York']
   spawn_nodes_feb:
     command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
     minute: '25'
@@ -71,6 +72,7 @@ cron::job:
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:25 on February Fridays'
+    environment: ['CRON_TZ=America/New_York']
   spawn_nodes_mar:
     command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
     minute: '25'
@@ -80,6 +82,7 @@ cron::job:
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:25 on March Fridays'
+    environment: ['CRON_TZ=America/New_York']
   spawn_nodes_apr:
     command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-9] state=power_up'
     minute: '25'
@@ -89,3 +92,4 @@ cron::job:
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:25 on April Fridays'
+    environment: ['CRON_TZ=America/New_York']
