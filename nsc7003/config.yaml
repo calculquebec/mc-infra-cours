@@ -51,7 +51,7 @@ jupyterhub::kernel::venv::packages:
   - 'ucimlrepo'
   - 'umap-learn'
   - 'seaborn'
-  - 'lightly' 
+  - 'lightly'
   - 'lightning'
 
 jupyterhub::kernel::venv::pip_environment:
