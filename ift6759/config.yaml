@@ -1,0 +1,52 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    runtime:
+      min: 3.5
+      def: 3.5
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 8
+    memory:
+      min: 1024
+      max: 30000
+      def: 2048
+    oversubscribe:
+      def: true
+      lock: false
+    ui:
+      def: 'lab'
+  SlurmFormSpawner:
+    disable_form: false
+
+profile::software_stack::lmod_default_modules:
+  - 'StdEnv/2023'
+  - 'gcc'
+  - 'mii'
+  - 'python/3.12'
+
+jupyterhub::kernel::venv::packages:
+  - 'numpy<2'
+  - 'scikit-learn'
+  - 'pandas'
+  - 'wandb'
+  - 'torch'
+  - 'jax'
+  - 'datasets'
+  - 'peft'
+  - 'deepspeed'
+  - 'transformers'
+  - 'accelerate'
+  - 'bitsandbytes'
+  - 'vllm'
+  - 'xformers'
+  - 'langchain'
+  - 'flash-attn'
+
+jupyterhub::kernel::venv::pip_environment:
+  PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
+
+jupyterhub::kernel::venv::kernel_environment:
+  PYTHONPATH: "/cvmfs/soft.computecanada.ca/easybuild/python/site-packages:${PYTHONPATH}"
+  EBPYTHONPREFIXES: "${SLURM_TMPDIR}:${EBPYTHONPREFIXES}"
