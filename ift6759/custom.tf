@@ -1,5 +1,5 @@
 locals {
-  default_pod = {
+  custom = {
     nnodes = {
       gpu = 0
       gpupool = 9
@@ -16,6 +16,9 @@ locals {
     mig = {
       gpu = { "2g.10gb" = 3 }
     }
+    
+    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
+    config_version = "3dd7004"
   }
   name = "ift6759"
 }
