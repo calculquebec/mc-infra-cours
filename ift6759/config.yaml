@@ -54,4 +54,3 @@ jupyterhub::kernel::venv::pip_environment:
 jupyterhub::kernel::venv::kernel_environment:
   PYTHONPATH: "/cvmfs/soft.computecanada.ca/easybuild/python/site-packages:${PYTHONPATH}"
   EBPYTHONPREFIXES: "${SLURM_TMPDIR}:${EBPYTHONPREFIXES}"
-
