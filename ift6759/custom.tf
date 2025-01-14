@@ -18,7 +18,7 @@ locals {
     }
     
     config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    config_version = "3dd7004"
+    config_version = "b9d3956"
   }
   name = "ift6759"
 }
