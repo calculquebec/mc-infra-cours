@@ -45,6 +45,7 @@ jupyterhub::kernel::venv::packages:
   - 'flash-attn'
 
 jupyterhub::kernel::venv::python: /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/python/3.12.4/bin/python3
+
 jupyterhub::kernel::venv::prefix: /opt/ipython-kernel-3.12
 
 jupyterhub::kernel::venv::pip_environment:
