@@ -15,14 +15,14 @@ locals {
       gpu = { "3g.20gb" = 2 }
     }
 
-#    home_size = 100
-#    project_size = 100
-#    scratch_size = 50
+    home_size = 100
+    project_size = 1000
+    scratch_size = 50
     image_cpu = "snapshot-cpunode-2025-A9.4-1"
     image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
-#    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    config_version = "339b915"
+    #config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
+    #config_version = "3dd7004"
 
     instances_type_map = {
       juno = {
@@ -31,13 +31,6 @@ locals {
       }
     }
 
-    volumes = {
-      nfs = {
-        home = { size = 50, quota = "1g" }
-        project = { size = 50 }
-	scratch = { size = 50, quota = "4g" }
-      }
-    }
   }
 
   name = "test-mc-infra-cours"

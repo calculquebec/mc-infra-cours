@@ -1,8 +1,8 @@
 locals {
-  default_pod = {
+  custom = {
     nnodes = {
       gpu = 0
-      gpupool = 9
+      gpupool = 4
     }
     home_size = 300
     project_size = 1500
@@ -16,6 +16,7 @@ locals {
     mig = {
       gpu = { "2g.10gb" = 3 }
     }
+    
   }
   name = "ift6759"
 }
