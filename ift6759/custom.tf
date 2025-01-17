@@ -17,8 +17,6 @@ locals {
       gpu = { "2g.10gb" = 3 }
     }
     
-    config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    config_version = "b9d3956"
   }
   name = "ift6759"
 }
