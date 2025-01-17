@@ -10,7 +10,7 @@ locals {
 
     shard = {
       gpu = 12
-      gpupool = 6
+      gpupool = 14
     }
     mig = {
       gpu = { "3g.20gb" = 2 }
