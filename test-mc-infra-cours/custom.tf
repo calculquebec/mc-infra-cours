@@ -3,13 +3,12 @@ locals {
     nnodes = {
       cpu = 1
       cpupool = 1
-      gpu = 0
+      gpu = 1
       gpupool = 16
       gpupool16 = 1
     }
 
     shard = {
-      gpu = 12
       gpupool = 14
     }
     mig = {
