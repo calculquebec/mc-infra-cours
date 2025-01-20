@@ -21,3 +21,14 @@ jupyterhub::jupyterhub_config_hash:
                 disable_form: false
 
 jupyterhub::kernel::venv::packages: ['numpy', 'pandas', 'matplotlib', 'random', 'seaborn', 'itertools']
+
+cron::job:
+        spawn_nodes:
+            command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-17] state=power_up'
+            minute: '20'
+            hour: '08'
+            month: '1-4'
+            weekday: '3'
+            user: 'root'
+            description: 'spawn nodes at 08:20 on each Wednesday'
+            environment: ['CRON_TZ=America/New_York']
