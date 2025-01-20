@@ -20,7 +20,7 @@ jupyterhub::jupyterhub_config_hash:
         SlurmFormSpawner:
                 disable_form: false
 
-jupyterhub::kernel::venv::packages: ['numpy', 'pandas', 'matplotlib', 'random', 'seaborn', 'itertools']
+jupyterhub::kernel::venv::packages: ['numpy', 'pandas', 'matplotlib', 'seaborn']
 
 cron::job:
         spawn_nodes:

@@ -1,0 +1,28 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    runtime:
+      min: 1.0
+      def: 2.0
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 8
+    memory:
+      min: 1024
+      max: 10000
+      def: 6144
+    oversubscribe:
+      def: true
+      lock: true
+    ui:
+      def: 'lab'
+    partition:
+      lock: false
+  SlurmFormSpawner:
+    disable_form: false
+
+profile::software_stack::lmod_default_modules:
+  - 'StdEnv/2023'
+  - 'gcc'
+  - 'mii'

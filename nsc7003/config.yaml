@@ -1,0 +1,84 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    runtime:
+      min: 3.5
+      def: 3.5
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 8
+    memory:
+      min: 1024
+      max: 30000
+      def: 2048
+    oversubscribe:
+      def: true
+      lock: false
+    gpus:
+      def: 'gpu:0'
+      choices: ['gpu:0', 'gpu:2g.10gb:1']
+    ui:
+      def: 'lab'
+    partition:
+      lock: false
+  SlurmFormSpawner:
+    disable_form: false
+
+profile::software_stack::lmod_default_modules:
+  - 'StdEnv/2023'
+  - 'gcc'
+  - 'mii'
+  - 'python/3.11'
+  - 'opencv/4.10.0'
+
+jupyterhub::kernel::venv::packages:
+  - 'numpy<2'
+  - 'matplotlib'
+  - 'scikit-learn'
+  - 'pandas'
+  - 'scipy'
+  - 'tqdm'
+  - 'kagglehub'
+  - 'ipywidgets'
+  - 'tifffile'
+  - 'torch==2.5.1'
+  - 'torchvision'
+  - 'tensorflow==2.17.0'
+  - 'pillow'
+  - 'grad-cam'
+  - 'antropy'
+  - 'ucimlrepo'
+  - 'umap-learn'
+  - 'seaborn'
+  - 'lightly'
+  - 'lightning'
+
+jupyterhub::kernel::venv::pip_environment:
+  PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
+  EBPYTHONPREFIXES: /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/scipy-stack/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/ipykernel/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcc12/opencv/4.10.0
+jupyterhub::kernel::venv::kernel_environment:
+  PYTHONPATH: "/cvmfs/soft.computecanada.ca/easybuild/python/site-packages:${PYTHONPATH}"
+  EBPYTHONPREFIXES: "${SLURM_TMPDIR}:${EBPYTHONPREFIXES}"
+
+cron::job:
+  spawn_nodes_jan:
+    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '15,22,29'
+    month: '1'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for January'
+    environment: ['CRON_TZ=America/New_York']
+  spawn_nodes_feb:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '5,19,26'
+    month: '2'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for February'
+    environment: ['CRON_TZ=America/New_York']

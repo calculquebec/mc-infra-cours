@@ -1,47 +1,57 @@
 jupyterhub::jupyterhub_config_hash:
-        SbatchForm:
-                runtime:
-                        min: 3.5
-                        def: 3.5
-                        max: 5.0
-                nprocs:
-                        min: 1
-                        def: 1
-                        max: 1
-                memory:
-                        min: 1024
-                        max: 2048
-                        def: 2048
-                oversubscribe:
-                        def: true
-                        lock: true
-                ui:
-                        def: 'lab'
-        SlurmFormSpawner:
-                disable_form: false
-
-profile::freeipa::mokey::require_verify_admin: false
+  SbatchForm:
+    runtime:
+      min: 3.5
+      def: 3.5
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 1
+    memory:
+      min: 1024
+      max: 2048
+      def: 2048
+    oversubscribe:
+      def: true
+      lock: true
+    ui:
+      def: 'lab'
+  SlurmFormSpawner:
+    disable_form: false
 
 profile::users::ldap::users:
-        dummy_cours1:
-                count: 1
-                groups: ['def-cours1']
+  dummy_cours1:
+    count: 1
+    groups: ['def-cours1']
 
-        dummy_cours2:
-                count: 1
-                groups: ['def-cours2']
+  dummy_cours2:
+    count: 1
+    groups: ['def-cours2']
 
-        dummy_cours3:
-                count: 1
-                groups: ['def-cours3']
+  dummy_cours3:
+    count: 1
+    groups: ['def-cours3']
 
 profile::slurm::accounting::accounts:
-        def-cours1:
-                Fairshare: 1
-                MaxJobs: 1
-        def-cours2:
-                Fairshare: 1
-                MaxJobs: 10
-        def-cours3:
-                Fairshare: 1
-                MaxJobs: 10
+  def-cours1:
+    Fairshare: 1
+    MaxJobs: 1
+  def-cours2:
+    Fairshare: 1
+    MaxJobs: 10
+  def-cours3:
+    Fairshare: 1
+    MaxJobs: 10
+
+cron::job:
+  spawn_nodes:
+    command: '#/opt/software/slurm/bin/scontrol update node=nodegpupool[1-5] state=power_up'
+    minute: '*/30'
+    hour: '*'
+    date: '*'
+    month: '*'
+    weekday: '4'
+    user: 'root'
+    description: 'spawn nodes every 30 minutes on thursday'
+    environment: ['CRON_TZ=America/New_York']
