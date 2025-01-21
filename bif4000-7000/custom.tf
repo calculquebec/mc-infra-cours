@@ -18,5 +18,5 @@ locals {
     }
     
   }
-  name = "bif4000-7000"
+  name = "bif4000"
 }
