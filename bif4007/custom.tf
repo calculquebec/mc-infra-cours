@@ -8,7 +8,9 @@ locals {
     scratch_size = 800
 
     user_quotas = {
-      home = "3g"
+      home = "4g"
+      project = "6g"
+      scratch = "60g"
     }
   }
   name = "bif4007"
