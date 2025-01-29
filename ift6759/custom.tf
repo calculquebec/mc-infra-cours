@@ -14,7 +14,7 @@ locals {
       scratch = "6g"
     }
     mig = {
-      gpu = { "2g.10gb" = 3 }
+      gpupool = { "2g.10gb" = 3 }
     }
     
   }
