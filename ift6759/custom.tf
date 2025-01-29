@@ -15,6 +15,7 @@ locals {
     }
     mig = {
       gpu = { "2g.10gb" = 3 }
+      gpupool = { "2g.10gb" = 3 }
     }
   }
   name = "ift6759"
