@@ -1,7 +1,12 @@
 locals {
   custom = {
     nnodes = {
-      cpupool = 10
+      cpupool = 80
+    }
+    instances_type_map = {
+      beluga = {
+        cpupool = "c4-30gb"
+      }
     }
     home_size = 2000
     project_size = 1000

@@ -29,7 +29,7 @@ profile::software_stack::lmod_default_modules:
 
 cron::job:
   spawn_nodes_feb:
-    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-10] state=power_up'
+    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-80] state=power_up'
     minute: '55'
     hour: '9'
     date: '20,21'
