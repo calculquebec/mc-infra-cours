@@ -43,7 +43,7 @@ jupyterhub::kernel::venv::packages:
   - 'ipywidgets'
   - 'tifffile'
   - 'torch==2.5.1'
-  - 'torchvision'
+  - 'torchvision==0.20.1'
   - 'tensorflow==2.17.0'
   - 'pillow'
   - 'grad-cam'
