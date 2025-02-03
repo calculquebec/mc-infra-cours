@@ -55,6 +55,7 @@ jupyterhub::kernel::venv::packages:
   - 'lightning'
 
 jupyterhub::kernel::venv::pip_environment:
+  PIP_NO_INDEX: 1
   PYTHONPATH: /cvmfs/soft.computecanada.ca/easybuild/python/site-packages:/cvmfs/soft.computecanada.ca/custom/python/site-packages
   EBPYTHONPREFIXES: /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/scipy-stack/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/ipykernel/2024a:/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcc12/opencv/4.10.0
 jupyterhub::kernel::venv::kernel_environment:
