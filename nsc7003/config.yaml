@@ -83,3 +83,23 @@ cron::job:
     user: 'root'
     description: 'spawn nodes for February'
     environment: ['CRON_TZ=America/New_York']
+  spawn_nodes_mar:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '12,19,26'
+    month: '3'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for March'
+    environment: ['CRON_TZ=America/New_York']
+  spawn_nodes_apr:
+    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool[1-3] state=power_up'
+    minute: '55'
+    hour: '8'
+    date: '2,9,16,23'
+    month: '4'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes for April'
+    environment: ['CRON_TZ=America/New_York']
