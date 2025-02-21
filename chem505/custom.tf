@@ -6,9 +6,9 @@ locals {
     }
 
     user_quotas = {
-      home = "10g"
-      project = "10g"
-      scratch = "10g"
+      home = "20g"
+      project = "20g"
+      scratch = "20g"
     }
 
     instances_type_map = {
