@@ -1,11 +1,5 @@
 terraform {
   required_version = ">= 1.4.0"
-  required_providers {
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.51.0"
-    }
-  }
 }
 variable "pool" {
   description = "Slurm pool of compute nodes"
@@ -69,8 +63,8 @@ locals {
 
     cluster_purpose = "cours_academiques"
     config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-    # for mkfs_options
-    config_version = "5de4c7f"
+    # for autoscale
+    config_version = "551e0aa"
 
     instances_type_map = {
       arbutus = {
@@ -346,7 +340,7 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.1.2"
+  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.2.1"
   config_git_url = try(local.custom.config_git_url, local.default_pod.config_git_url)
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
