@@ -1,7 +1,7 @@
 locals {
   custom = {
     nnodes = {
-      cpupool = 80
+      cpupool = 5
     }
     instances_type_map = {
       beluga = {
