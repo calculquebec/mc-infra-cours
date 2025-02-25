@@ -8,6 +8,9 @@ profile::freeipa::mokey::require_verify_admin: true
 profile::slurm::base::slurm_version: '23.02'
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
 profile::slurm::base::suspend_time: 900
+profile::slurm::base::suspend_rate: 80
+profile::slurm::base::resume_rate: 80
+
 profile::gpu::install::passthrough::nvidia_driver_stream: '550-dkms'
 
 prometheus::global_config:
