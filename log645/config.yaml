@@ -53,7 +53,7 @@ cron::job:
 
   spawn_nodes_march_20:
     command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
-    minute: '20' 
+    minute: '20'
     hour: '8'
     date: '20'
     month: '3'
@@ -65,9 +65,9 @@ cron::job:
   spawn_nodes_march_27:
     command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
     minute: '20'
-    hour: '8' 
+    hour: '8'
     date: '27'
-    month: '3'  
+    month: '3'
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:20 on March 27'
@@ -77,8 +77,8 @@ cron::job:
     command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
     minute: '20'
     hour: '8'
-    date: '3'  
-    month: '4'  
+    date: '3'
+    month: '4'
     weekday: '*'
     user: 'root'
     description: 'spawn nodes at 8:20 on April 3'
