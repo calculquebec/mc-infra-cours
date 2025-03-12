@@ -13,5 +13,5 @@ locals {
       scratch = "3g"
     }
   }
-  name = "hpc101"
+  name = "micm-edia"
 }
