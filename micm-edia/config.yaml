@@ -36,3 +36,7 @@ jupyterhub::kernel::venv::packages:
   - 'pytz'
   - 'six'
   - 'tzdata'
+
+profile::accounts::skel_archives:
+  - filename: main.zip
+    source: https://github.com/lcamelo10/iWOMEN-in-ARC/archive/refs/heads/main.zip
