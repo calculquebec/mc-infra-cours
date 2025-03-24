@@ -10,7 +10,7 @@ jupyterhub::jupyterhub_config_hash:
       max: 8
     memory:
       min: 1024
-      max: 30000
+      max: 50000
       def: 2048
     oversubscribe:
       def: true
