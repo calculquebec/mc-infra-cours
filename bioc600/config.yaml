@@ -17,6 +17,8 @@ jupyterhub::jupyterhub_config_hash:
       lock: false
     ui:
       def: 'lab'
+    partition:
+      lock: false
   SlurmFormSpawner:
     disable_form: false
 
