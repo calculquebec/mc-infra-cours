@@ -13,12 +13,6 @@ locals {
       project = "6g"
       scratch = "125g"
     }
-    instances_type_map = {
-      beluga = {
-        cpu = "c2-7.5gb"
-        cpupool = "c2-7.5gb"
-      }
-    }
   }
   name = "bioc600"
 }
