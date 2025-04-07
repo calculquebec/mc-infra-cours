@@ -59,3 +59,13 @@ cron::job:
     user: 'root'
     description: 'spawn nodes at 8:25 on for March'
     environment: ['CRON_TZ=America/New_York']
+  spawn_nodes_apr:
+    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool1 state=power_up'
+    minute: '0'
+    hour: '8'
+    date: '08'
+    month: '4'
+    weekday: '*'
+    user: 'root'
+    description: 'spawn nodes at 8am on for April'
+    environment: ['CRON_TZ=America/New_York']
