@@ -1,32 +1,26 @@
 jupyterhub::jupyterhub_config_hash:
-    SbatchForm:
-        account:
-            def: 'def-sponsor00'
-        runtime:
-            min: 3.5
-            def: 4.0
-            max: 5.0
-        nprocs:
-            min: 1
-            def: 4
-            max: 4
-        memory:
-            min: 1024
-            max: 22000
-            def: 21000
-        gpus:
-            def: 'gpu:1'
-            choices: ['gpu:1']
-        oversubscribe:
-            def: true
-            lock: true
-        ui:
-            def: 'lab'  # ['notebook', 'lab', 'terminal']
-    SlurmFormSpawner:
-        disable_form: true
-        start_timeout: 900
+  SbatchForm:
+    runtime:
+      min: 3.5
+      def: 3.5
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 1
+    memory:
+      min: 1024
+      max: 2048
+      def: 2048
+    oversubscribe:
+      def: true
+      lock: true
+    ui:
+      def: 'lab'
+  SlurmFormSpawner:
+    disable_form: false
 
-jupyterhub::kernel::venv::packages: ['cupy', 'jax==0.4.30', 'torchvision', 'matplotlib']
+jupyterhub::kernel::venv::packages: ['numpy']
 
 profile::freeipa::mokey::enable_user_signup: true
 profile::freeipa::mokey::require_verify_admin: false
@@ -36,7 +30,15 @@ profile::accounts::skel_archives:
       source: https://github.com/calculquebec/.cache/releases/download/v1/cache-v1.zip
     - filename: jupyter.zip
       source: https://github.com/calculquebec/jupyterlab-settings/releases/download/v1/jupyter-v1.zip
-    - filename: master.zip
-      source: https://github.com/calculquebec/formation_cpu-gpu/archive/refs/heads/master.zip
-    - filename: cifar-10-python.tar.gz
-      source: https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz
+
+cron::job:
+  spawn_nodes:
+    command: '#/opt/software/slurm/bin/scontrol update node=nodecpupool[1-5] state=power_up'
+    minute: '*/30'
+    hour: '*'
+    date: '*'
+    month: '*'
+    weekday: '4'
+    user: 'root'
+    description: 'spawn nodes every 30 minutes on thursday'
+    environment: ['CRON_TZ=America/New_York']
