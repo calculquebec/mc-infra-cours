@@ -12,7 +12,6 @@ locals {
     nnodes = {
       cpu = 2
       gpu = 0
-      compute_node = 0
       cpupool = 0
       gpupool = 0
     }
