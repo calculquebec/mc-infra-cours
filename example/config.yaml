@@ -26,10 +26,10 @@ profile::freeipa::mokey::enable_user_signup: true
 profile::freeipa::mokey::require_verify_admin: false
 
 profile::accounts::skel_archives:
-    - filename: cache.zip
-      source: https://github.com/calculquebec/.cache/releases/download/v1/cache-v1.zip
-    - filename: jupyter.zip
-      source: https://github.com/calculquebec/jupyterlab-settings/releases/download/v1/jupyter-v1.zip
+  - filename: cache.zip
+    source: https://github.com/calculquebec/.cache/releases/download/v1/cache-v1.zip
+  - filename: jupyter.zip
+    source: https://github.com/calculquebec/jupyterlab-settings/releases/download/v1/jupyter-v1.zip
 
 cron::job:
   spawn_nodes:
