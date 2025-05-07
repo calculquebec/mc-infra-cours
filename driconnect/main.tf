@@ -28,30 +28,30 @@ locals {
 
     # Pour choisir le type d'instance pour les différents types de noeud
     # Les valeurs ci-dessous sont les valeurs par defaut
-    instances_type_map = {
-      arbutus = {
-        mgmt = "p8-12gb"
-	login = "p4-6gb"
-	cpu = "c8-30gb-186-avx2"
-	cpupool = "c8-30gb-186-avx2"
-	compute_node = "p8-12gb"
-	gpu = "g1-8gb-c4-22gb"
-	gpupool = "g1-8gb-c4-22gb"
-      }
-      beluga = {
-        mgmt = "p4-7.5gb"
-	login = "p4-7.5gb"
-	cpu = "c8-60gb"
-	cpupool = "c8-60gb"
-	compute_node = "p8-15gb"
-	gpu = "gpu32-240-3450gb-a100x1"
-	gpupool = "gpu32-240-3450gb-a100x1"
-      }
-    }
+    #instances_type_map = {
+    #  arbutus = {
+    #    mgmt = "p8-12gb"
+    #    login = "p4-6gb"
+    #    cpu = "c8-30gb-186-avx2"
+    #    cpupool = "c8-30gb-186-avx2"
+    #    compute_node = "p8-12gb"
+    #    gpu = "g1-8gb-c4-22gb"
+    #    gpupool = "g1-8gb-c4-22gb"
+    #  }
+    #  beluga = {
+    #    mgmt = "p4-7.5gb"
+    #    login = "p4-7.5gb"
+    #    cpu = "c8-60gb"
+    #    cpupool = "c8-60gb"
+    #    compute_node = "p8-15gb"
+    #    gpu = "gpu32-240-3450gb-a100x1"
+    #    gpupool = "gpu32-240-3450gb-a100x1"
+    #  }
+    #}
 
-    # Configuration MIG pour les noeuds "gpu" et "gpupool" sur Beluga
-    gpu_mig_config = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
-    gpupool_mig_config = { "1g.5gb" = 7 }
+    # Configuration MIG pour les noeuds "gpu" et "gpupool" sur Juno
+    #gpu_mig_config = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
+    #gpupool_mig_config = { "1g.5gb" = 7 }
 
     # Pour redéfinir complètement toutes les instances
     # instances = {
