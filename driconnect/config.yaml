@@ -33,12 +33,12 @@ profile::accounts::skel_archives:
 
 cron::job:
   spawn_nodes:
-    command: '#/opt/software/slurm/bin/scontrol update node=nodecpupool[1-5] state=power_up'
+    command: '#/opt/software/slurm/bin/scontrol update node=ALL state=power_up'
     minute: '*/30'
     hour: '*'
     date: '*'
     month: '*'
-    weekday: '4'
+    weekday: '3'
     user: 'root'
-    description: 'spawn nodes every 30 minutes on thursday'
+    description: 'spawn nodes every 30 minutes on Wednesday'
     environment: ['CRON_TZ=America/New_York']
