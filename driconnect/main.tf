@@ -21,6 +21,12 @@ locals {
     project_size = 20
     scratch_size = 20
 
+    # Configuration MIG pour les noeuds "gpu" et "gpupool" sur Juno
+    #mig = { 
+    #  gpu = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
+    #  gpupool = { "1g.5gb" = 7 }
+    #}
+
     # version/commit de puppet_magic-castle
     # config_version = "e64f448"
     # config_version = "14.0.0"
@@ -48,9 +54,7 @@ locals {
     #  }
     #}
 
-    # Configuration MIG pour les noeuds "gpu" et "gpupool" sur Juno
-    #gpu_mig_config = { "3g.20gb" = 1, "2g.10gb" = 1, "1g.5gb" = 2 }
-    #gpupool_mig_config = { "1g.5gb" = 7 }
+
 
     # Pour redéfinir complètement toutes les instances
     # instances = {
