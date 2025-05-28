@@ -1,5 +1,5 @@
 locals {
-  name = "example"
+  name = "supercluster"
  
   # Tout dans cette structure est *optionnel*. Si c'est omis, les valeurs par défaut sont utilisées
   custom = {
@@ -13,7 +13,7 @@ locals {
       cpu = 2
       gpu = 0
       cpupool = 2
-      gpupool = 0
+      gpupool = 2
     }
 
     # taille des systèmes de fichiers. Les valeurs par défaut sont celles ci-dessous
