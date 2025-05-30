@@ -18,11 +18,6 @@ locals {
     mig = {
       gpupool = { "2g.10gb" = 3 }
     }
-    instances_type_map = {
-      juno = {
-        cpupool = "c8-30gb"
-      }
-    }
   }
   name = "neurasmus"
 }
