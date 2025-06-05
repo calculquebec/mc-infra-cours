@@ -14,6 +14,11 @@ locals {
     mig = {
       gpu = { "3g.20gb" = 2 }
     }
+    user_quotas = {
+      home = "1g"
+      project = "1g"
+      scratch = "1g"
+    }
 
     home_size = 100
     project_size = 1000
