@@ -8,9 +8,6 @@ locals {
       gpupool16 = 1
     }
 
-    shard = {
-      gpu = 12
-    }
     mig = {
       gpu = { "3g.20gb" = 2 }
     }
