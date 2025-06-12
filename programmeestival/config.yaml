@@ -40,13 +40,6 @@ jupyterhub::kernel::venv::packages:
   - 'matplotlib'
   - 'pennylane'
   - 'pennylane-calculquebec'
-  - 'qiskit==1.4.0'
-  - 'qiskit_algorithms'
-  - 'qiskit_aer'
-  - 'qiskit_ibm_runtime'
-  - 'qiskit_machine_learning'
-  - 'qiskit_nature'
-  - 'qiskit_optimization'
   - 'pennylane-lightning-gpu'
 
 profile::freeipa::mokey::enable_user_signup: true
