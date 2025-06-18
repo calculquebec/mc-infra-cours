@@ -5,7 +5,7 @@ locals {
       cpupool = 28
     }
     home_size = 300 
-    project_size = 1000
+    project_size = 5500
     scratch_size = 500
 
     user_quotas = {
