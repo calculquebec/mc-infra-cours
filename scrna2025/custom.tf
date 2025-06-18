@@ -10,7 +10,7 @@ locals {
 
     user_quotas = {
       home = "5g"
-      project = "30g"
+      project = "100g"
       scratch = "15g"
     }
   }
