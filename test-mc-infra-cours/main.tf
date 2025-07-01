@@ -6,7 +6,16 @@ locals {
       gpu = 0
       gpupool = 16
       gpupool16 = 1
+      login = 2
     }
+    instances_type_map = {
+      juno = {
+        login = "c2-7.5gb"
+        gpu = "gpu12-120-850gb-a100x1_MC"
+        gpupool = "gpu12-120-850gb-a100x1_MC"
+      }
+    }
+
 
     mig = {
       gpu = { "3g.20gb" = 2 }
