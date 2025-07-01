@@ -6,11 +6,11 @@ locals {
       gpu = 0
       gpupool = 16
       gpupool16 = 1
-      login = 2
+      login = 1
     }
     instances_type_map = {
       juno = {
-        login = "c2-7.5gb"
+        login = "c4-15gb"
         gpu = "gpu12-120-850gb-a100x1_MC"
         gpupool = "gpu12-120-850gb-a100x1_MC"
       }
@@ -30,17 +30,10 @@ locals {
     project_size = 1000
     scratch_size = 50
     image_cpu = "snapshot-cpunode-2025-A9.4-1"
-    image_gpu = "AlmaLinux-9"
+    image_gpu = "snapshot-gpunode-2025-A9.4-1"
 
     #config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
     #config_version = "3dd7004"
-
-    instances_type_map = {
-      juno = {
-        gpu = "gpu12-120-850gb-a100x1_MC"
-        gpupool = "gpu12-120-850gb-a100x1_MC"
-      }
-    }
 
   }
 
