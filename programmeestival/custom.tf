@@ -6,6 +6,11 @@ locals {
       cpu = 0
       cpupool = 20
     }
+    instances_type_map = {
+      juno = {
+        login = "c4-15gb"
+      }
+    }
     home_size = 250
     project_size = 1000
     scratch_size = 500
