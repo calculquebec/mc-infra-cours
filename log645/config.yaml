@@ -1,0 +1,51 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    runtime:
+      min: 1.0
+      def: 2.0
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 8
+    memory:
+      min: 1024
+      max: 10000
+      def: 6144
+    oversubscribe:
+      def: true
+      lock: true
+    ui:
+      def: 'lab'
+    partition:
+      lock: false
+  SlurmFormSpawner:
+    disable_form: false
+
+profile::software_stack::lmod_default_modules:
+  - 'StdEnv/2020'
+  - 'gcc/9.3.0'
+  - 'mii/1.1.2'
+  - 'openmpi/4.0.3'
+  - 'tau/2.30.1'
+
+cron::job:
+  spawn_nodes_jeudi:
+    command: '/opt/software/slurm/bin/scontrol update node=ALL state=power_up'
+    minute: '55'
+    hour: '17'
+    month: '7-8'
+    weekday: '4'
+    user: 'root'
+    description: 'spawn nodes at 17h55 on each Thurdays'
+    environment: ['CRON_TZ=America/New_York']
+
+  spawn_nodes_lundi:
+    command: '/opt/software/slurm/bin/scontrol update node=ALL state=power_up'
+    minute: '55'
+    hour: '17'
+    month: '7-8'
+    weekday: '1'
+    user: 'root'
+    description: 'spawn nodes at 17h55 on each Mondays'
+    environment: ['CRON_TZ=America/New_York']
