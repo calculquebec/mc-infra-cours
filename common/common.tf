@@ -17,6 +17,7 @@ variable "cloud_name" {
   type = string
   default = ""
 }
+variable "eyaml_key" { }
 variable "prometheus_password" {
   type = string
   default = ""
@@ -364,6 +365,7 @@ module "openstack" {
   guest_passwd = ""
 
   hieradata = local.hieradata
+  eyaml_key = base64decode(var.eyaml_key)
 
   subnet_id = local.default_pod.network_map[var.cloud_name].subnet_id
   os_ext_network = local.default_pod.network_map[var.cloud_name].os_ext_network
