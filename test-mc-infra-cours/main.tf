@@ -1,9 +1,9 @@
 locals {
   custom = {
     nnodes = {
-      cpu = 0
+      cpu = 1
       cpupool = 0
-      gpu = 0
+      gpu = 1
       gpupool = 16
       gpupool16 = 1
     }
@@ -20,7 +20,7 @@ locals {
     home_size = 100
     project_size = 1000
     scratch_size = 50
-    image_cpu = "snapshot-cpunode-2025-A9.4-1"
+    image_cpu = "AlmaLinux-9"
     image_gpu = "AlmaLinux-9"
 
     #config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
