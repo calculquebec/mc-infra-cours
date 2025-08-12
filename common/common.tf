@@ -62,8 +62,8 @@ locals {
     }
 
     cluster_purpose = "cours_academiques"
-    config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
-    config_version = "groups"
+    config_git_url = "https://github.com/calculquebec/puppet-magic_castle_formation.git"
+    config_version = "8c0ba8a"
 
     instances_type_map = {
       arbutus = {
@@ -339,7 +339,7 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/ComputeCanada/magic_castle.git//openstack?ref=14.3.0"
+  source         = "git::https://github.com/calculquebec/magic_castle_formation.git//openstack?ref=formation"
   config_git_url = try(local.custom.config_git_url, local.default_pod.config_git_url)
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
@@ -381,10 +381,11 @@ output "public_ip" {
 
 # Uncomment to register your domain name with CloudFlare
 module "dns" {
-  source           = "git::https://github.com/ComputeCanada/magic_castle.git//dns/cloudflare?ref=14.2.1"
+  source           = "git::https://github.com/calculquebec/magic_castle_formation.git//dns/cloudflare?ref=formation"
   name             = module.openstack.cluster_name
   domain           = module.openstack.domain
   public_instances = module.openstack.public_instances
+  dkim_public_key  = file("dkim_public.pem")
 }
 
 output "hostnames" {
