@@ -357,7 +357,7 @@ module "openstack" {
 
   volumes = local.volumes
 
-  public_keys = compact(concat(split("\n", file("../common/sshkeys.pub")), ))
+  public_keys = compact(concat(split("\n", file("../keys/sshkeys.pub")), ))
 
   nb_users = local.nb_users
   # Shared password, randomly chosen if blank
@@ -385,7 +385,7 @@ module "dns" {
   name             = module.openstack.cluster_name
   domain           = module.openstack.domain
   public_instances = module.openstack.public_instances
-  dkim_public_key  = file("dkim_public.pem")
+  dkim_public_key  = file("../keys/dkim_public.pem")
 }
 
 output "hostnames" {
