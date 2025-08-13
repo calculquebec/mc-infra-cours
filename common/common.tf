@@ -414,7 +414,7 @@ module "openstack" {
   hieradata = local.hieradata
   hieradata_dir = "./"
   eyaml_key = base64decode(var.eyaml_key)
-
+  software_stack = "alliance"
   subnet_id = local.default_pod.network_map[var.cloud_name].subnet_id
   os_ext_network = local.default_pod.network_map[var.cloud_name].os_ext_network
 
