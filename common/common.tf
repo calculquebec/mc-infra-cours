@@ -44,6 +44,7 @@ locals {
       gpu = 0
       cpupool = 0
       gpupool = 0
+      jupyter = 0
       login = 1
       gpupool12 = 0
       gpupool16 = 0
@@ -75,6 +76,7 @@ locals {
       arbutus = {
         mgmt = "p8-12gb"
         login = "c2-7.5gb-31-avx2"
+        jupyter = "p4-6gb"
         cpu = "c8-30gb-186-avx2"
         cpupool = "c8-30gb-186-avx2"
         gpu = "g1-8gb-c4-22gb"
@@ -83,12 +85,14 @@ locals {
       beluga = {
         mgmt = "p4-15gb"
         login = "p4-7.5gb"
+        jupyter = "p4-7.5gb"
         cpu = "c8-60gb"
         cpupool = "c8-60gb"
       }
       juno = {
         mgmt = "ha4-15gb"
-        login = "ha4-15gb"
+        login = "c4-15gb"
+        jupyter = "c4-15gb"
         cpu = "c8-30gb"
         cpupool = "c8-30gb"
 	gpu = "gpu16-240-3450gb-a100x1_cq"
@@ -163,15 +167,21 @@ locals {
       arbutus = {
         mgmt = {
           type = try(local.custom.instances_type_map.arbutus.mgmt, local.default_pod.instances_type_map.arbutus.mgmt),
-          tags = ["puppet", "mgmt", "nfs"],
+          tags = ["puppet", "mgmt", "nfs", "cron"],
           disk_size = 20,
           count = 1
         }
         login = {
           type = try(local.custom.instances_type_map.arbutus.login, local.default_pod.instances_type_map.arbutus.login),
-          tags = ["login", "public", "proxy", "cron"],
+          tags = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
           disk_size = 20,
           count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
+        }
+        jupyter = {
+          type = try(local.custom.instances_type_map.arbutus.jupyter, local.default_pod.instances_type_map.arbutus.jupyter),
+          tags = ["public", "proxy"],
+          disk_size = 20,
+          count = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.arbutus.cpu, local.default_pod.instances_type_map.arbutus.cpu),
@@ -203,15 +213,21 @@ locals {
       beluga = {
         mgmt = {
           type = try(local.custom.instances_type_map.beluga.mgmt, local.default_pod.instances_type_map.beluga.mgmt),
-          tags = ["puppet", "mgmt", "nfs"],
+          tags = ["puppet", "mgmt", "nfs", "cron"],
           disk_size = 20,
           count = 1
         }
-        login  = {
+        login = {
           type = try(local.custom.instances_type_map.beluga.login, local.default_pod.instances_type_map.beluga.login),
-          tags = ["login", "public", "proxy", "cron"],
+          tags = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
           disk_size = 20,
           count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
+        }
+        jupyter = {
+          type = try(local.custom.instances_type_map.beluga.jupyter, local.default_pod.instances_type_map.beluga.jupyter),
+          tags = ["public", "proxy"],
+          disk_size = 20,
+          count = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.beluga.cpu, local.default_pod.instances_type_map.beluga.cpu),
@@ -231,15 +247,21 @@ locals {
       juno = {
         mgmt = {
           type = try(local.custom.instances_type_map.juno.mgmt, local.default_pod.instances_type_map.juno.mgmt),
-          tags = ["puppet", "mgmt", "nfs"],
+          tags = ["puppet", "mgmt", "nfs", "cron"],
           disk_size = 20,
           count = 1
         }
-        login  = {
+        login = {
           type = try(local.custom.instances_type_map.juno.login, local.default_pod.instances_type_map.juno.login),
-          tags = ["login", "public", "proxy", "cron"],
+          tags = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
           disk_size = 20,
           count = try(local.custom.nnodes.login, local.default_pod.nnodes.login)
+        }
+        jupyter = {
+          type = try(local.custom.instances_type_map.juno.jupyter, local.default_pod.instances_type_map.juno.jupyter),
+          tags = ["public", "proxy"],
+          disk_size = 20,
+          count = try(local.custom.nnodes.jupyter, local.default_pod.nnodes.jupyter)
         }
         nodecpu = {
           type = try(local.custom.instances_type_map.juno.cpu, local.default_pod.instances_type_map.juno.cpu),
@@ -361,7 +383,6 @@ locals {
     },
     var.credentials_hieradata,
     yamldecode(file("../common/config.yaml")),
-    yamldecode(file("config.yaml"))
   ))
 }
 
@@ -391,6 +412,7 @@ module "openstack" {
   guest_passwd = ""
 
   hieradata = local.hieradata
+  hieradata_dir = "./"
   eyaml_key = base64decode(var.eyaml_key)
 
   subnet_id = local.default_pod.network_map[var.cloud_name].subnet_id
