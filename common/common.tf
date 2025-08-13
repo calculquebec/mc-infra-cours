@@ -57,9 +57,9 @@ locals {
     scratch_size = 100
 
     user_quotas = {
-      home = "1g"
-      project = "1g"
-      scratch = "1g"
+      home = { "bhard" = "1g", "ihard" = "100000" }
+      project = { "bhard" = "1g", "ihard" = "100000" }
+      scratch = { "bhard" = "1g", "ihard" = "100000" }
     }
 
     cluster_purpose = "cours_academiques"
