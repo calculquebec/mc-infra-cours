@@ -12,9 +12,9 @@ locals {
       gpu = { "3g.20gb" = 2 }
     }
     user_quotas = {
-      home = "1g"
-      project = "1g"
-      scratch = "1g"
+      home = { "bhard" = "1g", "ihard" = "100000" }
+      project = { "bhard" = "1g", "ihard" = "100000" }
+      scratch = { "bhard" = "1g", "ihard" = "100000" }
     }
 
     home_size = 100
