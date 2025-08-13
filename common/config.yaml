@@ -12,6 +12,7 @@ profile::slurm::base::suspend_rate: 80
 profile::slurm::base::resume_rate: 80
 
 profile::gpu::install::passthrough::nvidia_driver_stream: '575-dkms'
+profile::nfs::server::enable_client_quotas: true
 
 prometheus::global_config:
   scrape_interval: '1m'
