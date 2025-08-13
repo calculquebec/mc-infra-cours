@@ -56,9 +56,3 @@ cron::job:
     description: 'spawn nodes every 30 minutes on thursday'
     environment: ['CRON_TZ=America/New_York']
 
-profile::users::ldap::users:
-  'maxime':
-    count: 1
-    passwd: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAmEHAlOApxZn0m4YGLGZblPwfSkN6Uo0RdZhKzrd1b4mVG3xIot95Gucud7lE1rC4Xt8ceKdLu11YRW7TnYpXQYOUhC/A4/Qz/GHk6sA3JMXCoFgVBRSq/opFvYzBPvl933jXXesZvLKABT5/0gv0px5d4Cl45OHZcFCMOCE+JqDIsCGoxHGBdCIa/hBaGCw29Qz3NRjzCxQ1wrSOw5wkb0tpaKhhSOjopE4gYMA7qVKRdk4nVYX5h3n0/H1IOQGCCgLBnhGI15mrDi/b8OcZ+b14sqZ6OzrRMR0s/wscx81nMwyE+P2u1oe87ii45kauksyYE3XgIkN16gwe0BA2FTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAK9GXFh6uOsBo+K5Osw0Q0gCBFOXuOSRTz6oyOEExlsqe0VS6p9BMLkPNa/PvSzUZPYw==]
-    groups: ['def-sponsor00', 'admins']
-
