@@ -11,10 +11,11 @@ locals {
     mig = {
       gpu = { "3g.20gb" = 2 }
     }
-    user_quotas = {
-      home = { "bhard" = "1g", "ihard" = "100000" }
-      project = { "bhard" = "1g", "ihard" = "100000" }
-      scratch = { "bhard" = "1g", "ihard" = "100000" }
+    user_quotas_sizes = {
+      home = "3g"
+    }
+    user_quotas_inodes = {
+      project = "500000"
     }
 
     home_size = 100
