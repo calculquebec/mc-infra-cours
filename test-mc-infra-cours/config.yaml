@@ -55,4 +55,3 @@ cron::job:
     user: 'root'
     description: 'spawn nodes every 30 minutes on thursday'
     environment: ['CRON_TZ=America/New_York']
-
