@@ -3,7 +3,7 @@ locals {
     nnodes = {
       cpu = 1
       cpupool = 0
-      gpu = 0
+      gpu = 1
       gpupool = 16
       gpupool16 = 1
     }
@@ -11,16 +11,17 @@ locals {
     mig = {
       gpu = { "3g.20gb" = 2 }
     }
-    user_quotas = {
-      home = "1g"
-      project = "1g"
-      scratch = "1g"
+    user_quotas_sizes = {
+      home = "3g"
+    }
+    user_quotas_inodes = {
+      project = "500000"
     }
 
     home_size = 100
     project_size = 1000
     scratch_size = 50
-    image_cpu = "snapshot-cpunode-2025-A9.4-1"
+    image_cpu = "AlmaLinux-9"
     image_gpu = "AlmaLinux-9"
 
     #config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"

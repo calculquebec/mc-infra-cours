@@ -1,17 +1,54 @@
 jupyterhub::enable_otp_auth: false
 
+lookup_options:
+  jupyterhub::kernel::venv::pip_environment:
+    merge: deep
+  jupyterhub::jupyterhub_config_hash:
+    merge: deep
+  profile::accounts::skel_archives:
+    merge: deep
+  profile::users::ldap::users:
+    merge: deep
+  profile::software_stack::lmod_default_modules:
+    merge: deep
+
 jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    account:
+      def: 'def-sponsor00'
+    runtime:
+      min: 3.5
+      def: 4.0
+      max: 5.0
+    nprocs:
+      min: 1
+      def: 1
+      max: 1
+    memory:
+      min: 1024
+      max: 2048
+      def: 2048
+    oversubscribe:
+      def: true
+      lock: true
+    ui:
+      def: 'lab'
   SlurmFormSpawner:
     start_timeout: 900
+    http_timeout: 300
 
-profile::freeipa::mokey::require_verify_admin: true
 profile::slurm::base::slurm_version: '24.11'
+profile::freeipa::mokey::require_verify_admin: true
+
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
 profile::slurm::base::suspend_time: 900
 profile::slurm::base::suspend_rate: 80
 profile::slurm::base::resume_rate: 80
 
-profile::gpu::install::passthrough::nvidia_driver_stream: '550-dkms'
+jupyterhub::kernel::venv::pip_environment:
+  PIP_NO_INDEX: 1
+jupyterhub::kernel::venv::kernel_name: 'ospython'
+jupyterhub::kernel::venv::display_name: 'Python bundle'
 
 prometheus::global_config:
   scrape_interval: '1m'
@@ -29,16 +66,22 @@ prometheus::remote_write_configs:
       username: 'cqformation'
       password: "%{alias('prometheus_password')}"
 
-profile::software_stack::lmod_default_modules: ['StdEnv/2023']
-jupyterhub::kernel::venv::python: /cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcccore/python/3.11.5/bin/python3
-jupyterhub::kernel::venv::prefix: /opt/ipython-kernel-3.11
-lookup_options:
-  jupyterhub::kernel::venv::pip_environment:
-    merge: deep
-jupyterhub::kernel::venv::pip_environment:
-  PIP_NO_INDEX: 1
-  PIP_CONFIG_FILE: /cvmfs/soft.computecanada.ca/config/python/pip-x86-64-v3-gentoo2023.conf
 
 magic_castle::site::tags:
   cron:
     - cron
+
+profile::mail::dkim::private_key: "%{alias('dkim_key')}"
+
+# encrypted secrets
+dkim_key: ENC[PKCS7,MIIIHQYJKoZIhvcNAQcDoIIIDjCCCAoCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAMfseUvIhkKbugMn/TRaBAahG1kjrcDQS2LTvvvkoN5g3j4P15pgor70RDk+EEe083LgVGtaCFKZyQ4rvdUUql1uoMh1qlon5QndxrKc+HFn8icOXVH/wsf7ggOIj56sJjH1c7n6YiZIM33F2O1mYop2cVaWQP1bvBSQXRzBHPJ+3WANkNeUCDxpDUKHkrK14BRrhn86VJdR2k8W6lKeBySpHoOinOpDVasJjm5ce7TjsVuEMjhzzLgpvjI86UQiayK85qITpDR65NUcDATXSUwSJlt9qVs7Nlu1zz2f5y0cerhpAfry4XjT8VeE9PEMrwpeonYLw9P3LTm+1hoARgDCCBt4GCSqGSIb3DQEHATAdBglghkgBZQMEASoEEJRmvy8XcZH8G6R3uWU3Qz6AggawQEqzzzWBkEtjkJPu8ZAoOg28Eb6P8kVd2+fQipUj/yU8rBQ1q7CUoxBC3bjL95mocSoHb2sB11Ni3nIbBk9Z/GM9wMAPlDGAUrVeAClOezzpJORf6hEe5kjWDZL4P+nCWGnsYFXLzVX2ZIYH1qk237duTEtsf19fNzmM7CvzGiSb5xTNlBK+djYWnTqOomtl0iI5GJEBv6GN2gomDH2gykVYHsx97suq+QoVlkngkHhLX0RC/h3knnEZojwEIfighMbHKT9dSWOle4qZj55chgGRwFthmfRAFbxM7YgMdkI6kxNRhrp0LPurD0mri28OZ9dPYIeJGQhZzHBXFo2ZkUkKe910VTCp+9SQVeKAvZRl4YL1+zle+we3yzcxP5ZJCy+ddS3lPw5lbcS8F0lMouveADPJm24GL9jK/C5znzCHF8EAz7GEuKvcVMz1VksaVfx37Op639xMMYQecZgENG7/r95uKGCoVcuGeZUpZbDNgGMaUpfCYQZeX8sII0Q8E7DSXal5gTHgSFjA6MDIfcTc1EIwQiygaIbvVRAWTpV83JUd1d7OMxg/VGXv8ll5q5/66wQrJJrnqIT5lsMkW1uTl9aGTCp8pW1Z8fe3S5dOINNjFFP6vCBpIKOmLCfRDf8avOIfmR6+IBTxUulSzs4YByYjGJZCJVyhpIodKNDI1j0JEsO3ueo4999c8UJKbPtjuOMzn/fgwrT4qfNg3JucioqjnzCnyk3Sjue31+Aa1XkrJpLdBTp1GE0MOswYbZxjnGlkCD2rrU1qwdcp5BEoT+AgdfHPoij9LAInwaE7slcTwaHneKnIZG75PM5GF9AxassDPgaHGI51AsbBB61A/dc39VHjNjHC3UmxfDgYYWzaYq5brXRQgprmUIiQ91+cX5P+icwzzh8A8M2AFSnfllan2eYAs90nOt19GA6TiBaVIXalo+2c5IQAwBRGj8XIJo6wDu2BGeBgUN7XEv/XYqMuSU/1b1oXldGapxq0ahxoKig55OyEc5NrHv1QPGgH/6GeoWEPYus+0hkRBYYGA/qlXq0qv6JYG7J+Mz5RHdUKx7EqPQ0sWd+TIWBfIJMqP6w1BuXLJabqFOW0+35zwIgCdadw42nsQAm2J+OgByVz3uK32SXnFAh2N11O2rWPOTzM63So1Yl6Yqf+s8i2ucWneg0/H6p1sPcRPUZM8tB08rHQLhLTXIoBXA3GY09BOxhJEyFwRZK3Qmsq9z1xvjp5VBPNvuAC1mvy17hAbxBs9n+X7KDkDMxNXC0LV4DdzGqI4EcNsQZLiw0I16gWa+O5BUZWVLrYnx95YHZnIlaRo6NJIC8xppH9TuSpHHyvFKfZMjojXy2oKXHSivDgQGi/DypLd9Ouf/Enms+CJCbZd19RcDoUjSP3l2zKj3BiqDQwOx4YHFRDIHBPKMys2xxsemd0uhhExdN78mqs/zG4GUA0Zbz0K632e5hVW1zsFylKohiLOfM2jhBvVfmBJqr+dmnDoOE4cPksYmx7w45V/3JlKD+fRO6aPG3BfJR3vODdrgscXRCwfXc0OMf9ZJHIGJQ5sS3zpzW+NTOLfMnCzEdYV8Ntjxcgmhp68a5TKLYCXxVBrEsTYsKs6aGc9HmcEr03vyMz9ECwrDkpJK+zusl6Qiljth4UDDL/e0bxv5KUg4/HfLlhH7GGNw0X7O1zmLSL7tGiiPbkuIU/ONhhKAXmcYvR+NzmcN/gxp/Mp7+iOc+3dMskIvPvIZoWBjbBFqoTsla0q+uMA4VfJRy3a4FgKei62HaBv57WIB6YoXBCXAUkUEYD0ohdoOKahpQ2uxMC6zrhEiG7m+h15BeoY3iBxfnVMkeSnps8Q177RZz+stRQ75h2H3jRGQiqcPUtfE+3Wl2hILAYBxP/dnRSQ96FjMtwfh+VWETgSdeTNaUYa2CavDUHSXie1h9yCWDT1qr3kSERbBZN0t6pOylbx/ADa4U78M3JzmRT/Co6YxPPVFjVmLJF6Paw9TVLGjfXz+5HcDzuXpmQ7IsnYw+jFsDH/ArrhIoZduZQ8V3oX6PMa2wuqxQE1pp0AoKj/PyqYk5kXSUFnZG7Ios0GUThZL4b5iBGCwP/u49DiEUTwQS5FIwgIQSadzcKzQTuAFPKRNu2vS1tACjuhtR+NUELKs9SekDZN8ijvjVSG7zZsEssSzymh+UilBccUA77hHjit9oWXXVZjow/fA6s4vY3W4R49qP/SP1zW1AKVBXC8kaQAQpQYtRlRF1dvIAjcdDy3+tLTarzRmyIOMY=]
+
+profile::users::ldap::users:
+  'mboisson':
+    count: 1
+    passwd: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAmEHAlOApxZn0m4YGLGZblPwfSkN6Uo0RdZhKzrd1b4mVG3xIot95Gucud7lE1rC4Xt8ceKdLu11YRW7TnYpXQYOUhC/A4/Qz/GHk6sA3JMXCoFgVBRSq/opFvYzBPvl933jXXesZvLKABT5/0gv0px5d4Cl45OHZcFCMOCE+JqDIsCGoxHGBdCIa/hBaGCw29Qz3NRjzCxQ1wrSOw5wkb0tpaKhhSOjopE4gYMA7qVKRdk4nVYX5h3n0/H1IOQGCCgLBnhGI15mrDi/b8OcZ+b14sqZ6OzrRMR0s/wscx81nMwyE+P2u1oe87ii45kauksyYE3XgIkN16gwe0BA2FTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAK9GXFh6uOsBo+K5Osw0Q0gCBFOXuOSRTz6oyOEExlsqe0VS6p9BMLkPNa/PvSzUZPYw==]
+    groups: ['def-sponsor00', 'admins']
+  'helene':
+    count: 1
+    passwd: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAJ6nf+JXAomiYQlz5cZdjiooFxkzVL3zIK6d3dKBAXV4WEFGyg8Vh6XzKTCHW0/BUhxn8SsMrfiEqjG/GX7gG+JRByOwZJPAE6UWxI9iNa2yPy9ug7Bry1I7Cl3iuSNx9NENF+Rhk0JM4ZSzALAwIYGR/LSA4NDvMIwgX0N/+EZzYB+OZLxTgRokJ4yxe8kXzQuwD4wkmr4+uw0riB/MlpCg1fxf1dsvn5uTVDE3d9Ic1EZoFSpuNBGNB5Bix9tqbqge+gbhSg2v79aewOZKs0AI0bMp9wmQn2OGEaF+SNYki/9VN3ZCk+oiXzLy+I5CjeRUEO0GWDm4gH6vukkO5czA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBClbtm4aGLsLWI+adu8q0PKgBCWFEK/OG8afUdF/ff9fQY7]
+    groups: ['def-sponsor00', 'admins']
