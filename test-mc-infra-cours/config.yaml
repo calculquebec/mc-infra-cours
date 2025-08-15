@@ -33,6 +33,11 @@ profile::users::ldap::users:
     count: 1
     groups: ['def-cours3']
 
+jupyterhub::kernel::venv::packages:
+  - 'numpy'
+  - 'scikit-learn'
+  - 'pandas'
+
 profile::slurm::accounting::accounts:
   def-cours1:
     Fairshare: 1
