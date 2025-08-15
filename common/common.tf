@@ -75,7 +75,7 @@ locals {
     instances_type_map = {
       arbutus = {
         mgmt = "p8-12gb"
-        login = "c2-7.5gb-31-avx2"
+        login = "p4-6gb"
         jupyter = "p4-6gb"
         cpu = "c8-30gb-186-avx2"
         cpupool = "c8-30gb-186-avx2"
@@ -83,7 +83,7 @@ locals {
         gpupool = "g1-8gb-c4-22gb"
       }
       beluga = {
-        mgmt = "p4-15gb"
+        mgmt = "p4-7.5gb"
         login = "p4-7.5gb"
         jupyter = "p4-7.5gb"
         cpu = "c8-60gb"

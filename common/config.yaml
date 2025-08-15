@@ -39,6 +39,7 @@ jupyterhub::jupyterhub_config_hash:
 
 profile::slurm::base::slurm_version: '24.11'
 profile::freeipa::mokey::require_verify_admin: true
+
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
 profile::slurm::base::suspend_time: 900
 profile::slurm::base::suspend_rate: 80
