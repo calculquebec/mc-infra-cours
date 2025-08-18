@@ -38,7 +38,7 @@ cron::job:
     minute: '55'
     hour: '11'
     month: '8'
-    day: '19'
+    date: '19'
     user: 'root'
     description: 'spawn nodes on August 19th at 11:55'
     environment: ['CRON_TZ=America/New_York']
