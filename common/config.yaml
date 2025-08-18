@@ -37,11 +37,13 @@ jupyterhub::jupyterhub_config_hash:
     start_timeout: 900
     http_timeout: 300
 
-profile::slurm::base::slurm_version: '24.11'
 profile::freeipa::mokey::require_verify_admin: true
 
+profile::nfs::server::enable_client_quotas: true
+profile::slurm::base::slurm_version: '24.11'
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
 profile::slurm::base::suspend_time: 900
+profile::slurm::base::resume_timeout: 900
 profile::slurm::base::suspend_rate: 80
 profile::slurm::base::resume_rate: 80
 
