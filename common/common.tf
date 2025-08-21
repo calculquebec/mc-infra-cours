@@ -70,7 +70,7 @@ locals {
 
     cluster_purpose = "cours_academiques"
     config_git_url = "https://github.com/calculquebec/puppet-magic_castle_formation.git"
-    config_version = "8fb97c4"
+    config_version = "3c0ca77"
 
     instances_type_map = {
       arbutus = {
