@@ -25,7 +25,7 @@ locals {
     image_gpu = "AlmaLinux-9"
 
     #config_git_url = "https://github.com/mboisson/puppet-magic_castle.git"
-    #config_version = "3dd7004"
+    config_version = "a3d5b02"
 
     instances_type_map = {
       juno = {
