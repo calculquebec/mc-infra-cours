@@ -50,14 +50,3 @@ profile::slurm::accounting::accounts:
     Fairshare: 1
     MaxJobs: 10
 
-cron::job:
-  spawn_nodes:
-    command: '/opt/software/slurm/bin/scontrol update node=nodegpupool1 state=power_up'
-    minute: '*/05'
-    hour: '9'
-    date: '*'
-    month: '*'
-    weekday: '4'
-    user: 'root'
-    description: 'spawn nodes every 30 minutes on thursday'
-    environment: ['CRON_TZ=America/New_York']
