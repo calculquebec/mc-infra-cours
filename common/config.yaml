@@ -46,6 +46,9 @@ jupyterhub::jupyterhub_config_hash:
   SlurmFormSpawner:
     start_timeout: 900
     http_timeout: 300
+    ui_args:
+      lab:
+        modules: ['jupyterlab-apps']
 
 profile::freeipa::mokey::require_verify_admin: true
 
