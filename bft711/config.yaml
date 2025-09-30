@@ -41,9 +41,9 @@ cron::job:
   spawn_nodes:
     command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
     hour: '8'
-    minute: '20'
+    minute: '10'
     weekday: '4'
     month: '9-12'
     user: 'root'
-    description: 'spawn nodes at 08:20 on each Thursday'
+    description: 'spawn nodes at 08:10 on each Thursday'
     environment: ['CRON_TZ=America/New_York']
