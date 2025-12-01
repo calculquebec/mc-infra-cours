@@ -43,7 +43,7 @@ cron::job:
     command: '/opt/software/slurm/bin/scontrol update node=ALL state=power_up'
     hour: '8'
     minute: '50'
-    day: '10'
+    date: '10'
     month: '12'
     user: 'root'
     description: 'spawn nodes at 08:50 on Wednesday Dec. 10th'
