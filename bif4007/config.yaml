@@ -16,7 +16,7 @@ jupyterhub::jupyterhub_config_hash:
   SlurmFormSpawner:
     disable_form: false
 
-#jupyterhub::kernel::venv::packages: ['numpy']
+# jupyterhub::kernel::venv::packages: ['numpy']
 
 profile::freeipa::mokey::enable_user_signup: true
 
