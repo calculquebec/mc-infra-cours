@@ -19,5 +19,5 @@ locals {
     }
   }
 
-  name = "ift704"
+  name = "ift3710"
 }
