@@ -1,0 +1,20 @@
+profile::software_stack::lmod_default_modules:
+  - 'gcc'
+  - 'minimap2'
+  - 'samtools'
+  - 'fastqc'
+  - 'bedtools'
+  - 'bwa'
+  - 'seqkit'
+  - 'trimmomatic'
+  - 'subread'
+  - 'augustus'
+  - 'hmmer'
+  - 'metaeuk'
+  - 'prodigal'
+  - 'r/4.3.1'
+  - 'bbmap'
+  - 'r-bundle-bioconductor/3.18'
+  - 'blast+/2.14.1'
+
+jupyterhub::kernel::venv::packages: ['flye', 'deeptools', 'quast', 'biopython', 'pandas', 'busco', 'hicexplorer', 'mokapot', 'pygenometracks', 'pyteomics', 'macs3']
