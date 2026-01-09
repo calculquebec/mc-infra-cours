@@ -18,5 +18,6 @@ profile::software_stack::lmod_default_modules:
   - 'blast+/2.14.1'
   - 'arrow'
   - 'python/3.11'
+  - 'percolator'
 
 jupyterhub::kernel::venv::packages: ['flye', 'msgpack', 'deeptools', 'quast', 'biopython', 'pandas', 'busco', 'hicexplorer', 'pygenometracks', 'pyteomics', 'macs3', 'mokapot', 'numpy<2']
