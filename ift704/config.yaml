@@ -1,5 +1,9 @@
 jupyterhub::jupyterhub_config_hash:
   SbatchForm:
+    memory:
+      min: 1024
+      max: 10000
+      def: 2048
     ui:
       def: 'lab'
 
