@@ -13,7 +13,8 @@ jupyterhub::jupyterhub_config_hash:
 # jupyterhub::kernel::venv::packages: ['numpy']
 
 profile::software_stack::extra_site_env_vars:
-  R_LIBS: '/project/def-sponsor00/R/4.4.0'
+  - R_LIBS: '/project/def-sponsor00/R/4.4.0'
+  - OMPI_MCA_btl: "vader,tcp,self"
 
 profile::freeipa::mokey::enable_user_signup: true
 profile::software_stack::lmod_default_modules:
