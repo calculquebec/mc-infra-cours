@@ -2,7 +2,7 @@ locals {
   custom = {
     nnodes = {
       cpupool = 10
-      gpupool = 0
+      gpupool = 10
     }
     instances_type_map = {
       juno = {
