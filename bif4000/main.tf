@@ -8,6 +8,11 @@ locals {
     project_size = 100
     scratch_size = 100
 
+    instances_type_map = {
+      juno = {
+        login = "ha4-15gb"
+      }
+    }
     user_quotas = {
       home = "4g"
       project = "4g"
