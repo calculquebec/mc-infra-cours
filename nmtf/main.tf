@@ -1,3 +1,10 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    memory:
+      min: 1024
+      max: 20000
+      def: 2048
+
 locals {
   custom = {
     nnodes = {
