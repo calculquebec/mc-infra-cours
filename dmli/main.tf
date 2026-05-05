@@ -1,7 +1,7 @@
 locals {
   custom = {
     nnodes = {
-      gpupool = 1
+      gpupool = 2
     }
     home_size = 325
     project_size = 200
