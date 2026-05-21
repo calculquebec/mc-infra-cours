@@ -1,8 +1,0 @@
-jupyterhub::jupyterhub_config_hash:
-  SbatchForm:
-    memory:
-      min: 1024
-      max: 4096
-      def: 2048
-
-jupyterhub::kernel::venv::packages: ['torch']

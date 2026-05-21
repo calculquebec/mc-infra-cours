@@ -1,4 +1,0 @@
-jupyterhub::jupyterhub_config_hash:
-  SbatchForm:
-    ui:
-      def: 'lab'
