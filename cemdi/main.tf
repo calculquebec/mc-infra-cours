@@ -12,10 +12,6 @@ locals {
       project = "16g"
       scratch = "16g"
     }
-
-    image_map = {
-      cpupool = "AlmaLinux-9"
-    }
   }
   name = "cemdi"
 }
