@@ -8,4 +8,4 @@ jupyterhub::jupyterhub_config_hash:
       def: 'gpu:0'
       choices: ['gpu:0', 'gpu:1']
 
-jupyterhub::kernel::venv::packages: ['tensorflow', 'torch', 'simpleITK', 'monai', 'tensorboard', 'tqdm', 'nibabel', 'numpy', 'matplotlib', 'jupyterlab', 'holoviews', 'jupyter', 'torchinfo', 'torchvision', 'umap-learn', 'h5py']
+jupyterhub::kernel::venv::packages: ['tensorflow==2.19.1', 'torch<2.12', 'simpleITK', 'monai', 'tensorboard', 'tqdm', 'nibabel', 'numpy', 'matplotlib', 'holoviews', 'torchinfo', 'torchvision', 'umap-learn', 'h5py']
