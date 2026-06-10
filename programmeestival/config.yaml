@@ -43,7 +43,7 @@ jupyterhub::kernel::venv::packages:
   - 'pennylane-lightning-gpu==0.44'
   - 'qiskit'
   - 'qiskit-calculquebec'
-  - 'qiskit-qiskit-ibm-runtime'
+  - 'qiskit-ibm-runtime'
   - 'merlinquantum'
   - 'perceval_quandela'
   - 'mitiq'
