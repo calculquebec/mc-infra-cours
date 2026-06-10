@@ -1,11 +1,11 @@
 locals {
   custom = {
     nnodes = {
-      gpupool = 2
+      gpupool = 11
     }
-    home_size = 325
-    project_size = 200
-    scratch_size = 500
+    home_size = 400
+    project_size = 250
+    scratch_size = 525
 
     user_quotas = {
       home = "5g"
@@ -15,7 +15,8 @@ locals {
     mig = {
       gpupool = { "1g.5gb" = 7 }
     }
-    
   }
   name = "dmli"
 }
+
+
