@@ -4,5 +4,8 @@ jupyterhub::jupyterhub_config_hash:
       min: 1024
       max: 4096
       def: 2048
+    gpus:
+      def: 'gpu:0'
+      choices: ['gpu:0', 'gpu:1']
 
-jupyterhub::kernel::venv::packages: ['tensorflow', 'torch', 'simpleITK', 'monai', 'tensorboard', 'tqdm', 'nibabel', 'numpy', 'matplotlib', 'jupyterlab']
+jupyterhub::kernel::venv::packages: ['tensorflow', 'torch', 'simpleITK', 'monai', 'tensorboard', 'tqdm', 'nibabel', 'numpy', 'matplotlib', 'jupyterlab', 'holoviews', 'jupyter', 'torchinfo', 'torchvision', 'umap-learn', 'h5py']
