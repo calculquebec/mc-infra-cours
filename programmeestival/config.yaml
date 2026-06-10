@@ -33,7 +33,7 @@ jupyterhub::kernel::venv::packages:
   - 'numpy'
   - 'scikit-learn'
   - 'pandas'
-  - 'torch'
+  - 'torch<2.12'
   - 'torchvision'
   - 'scipy'
   - 'scikit-image'
