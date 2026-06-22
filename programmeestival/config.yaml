@@ -42,13 +42,15 @@ jupyterhub::kernel::venv::packages:
   - 'pennylane==0.45'
   - 'pennylane-calculquebec'
   - 'pennylane-lightning==0.45'
-  - 'pennylane-lightning-gpu==0.45'
   - 'qiskit'
   - 'qiskit-calculquebec'
   - 'qiskit-ibm-runtime'
   - 'merlinquantum'
   - 'perceval_quandela'
   - 'mitiq'
+  - 'mthree'
+  - 'ply'
+  - 'pylatexenc'
 
 profile::accounts::skel_archives:
   - filename: ciq101-main.zip
