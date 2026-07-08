@@ -55,7 +55,6 @@ jupyterhub::jupyterhub_config_hash:
 
 metrix::slurm_password: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAZNYQIl0OceHioO2Ez7UlD9p1tFUMssqJzn74PzRp1/pPhXBwKmy60PNEdnpc/UIGLe45y6svdMInn5D/5SqawdyQ9KUOimEyCLpsc1guL7N/VivZ1MjyoNjW4GZD1zctbV0sYY9KjVnWnMjbtUSKNfZOpinJqMj2JRnwPkuxG8nQP6a6oTHVaVl3eLHOul5Jlh5xDi/YKm1s7JO20wCFr6WFhM/8hIE+9vKPSCPAALGBhQsSmwbf2GJxGXLt1KkRpC43/fH+LYgDFeC8wT9LnCXhjtAY20FEXV9DpL/AtzjYhhxiPT0MnO6JtNSuG578qLobrMvblhXVBc9JAIXPqDBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBC2qo/5TKJ6/5Z6FOaE2uEcgCBPspqlZyXZWHNuAZy0lD49c88luiZDlCGklWleUwHG+w==]
 profile::freeipa::mokey::require_verify_admin: true
-profile::gpu::install::passthrough::nvidia_driver_stream: '580-dkms'
 
 profile::nfs::server::enable_client_quotas: true
 # when using snapshots, it is quick enough to boot nodes that 900 seconds is enough for suspend
