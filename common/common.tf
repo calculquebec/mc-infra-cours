@@ -164,7 +164,7 @@ locals {
       }
       login = {
         type = try(local.custom.instances_type_map[var.cloud_name]["login"], local.default_pod.instances_type_map[var.cloud_name]["login"]),
-	tags = try(local.custom.nnodes.jupyter, 0) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
+	tags = try(local.custom.nnodes.jupyter, 0) == 0 ? ["login", "public", "proxy", "yum_cron"] : ["login", "public", "yum_cron"],
 	disk_size = 20,
 	count = try(local.custom.nnodes.login, 1)
       }

@@ -1,1 +1,2 @@
 mod 'puppet-cron', '2.0.0'
+mod 'treydock-yum_cron', '9.0.2'

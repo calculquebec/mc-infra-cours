@@ -49,3 +49,11 @@ profile::slurm::accounting::accounts:
   def-cours3:
     Fairshare: 1
     MaxJobs: 10
+
+magic_castle::site::tags:
+  yum_cron:
+    - yum_cron
+
+yum_cron::apply_updates: true
+yum_cron::reboot: 'when-needed'
+yum_cron::upgrade_type: 'security'
