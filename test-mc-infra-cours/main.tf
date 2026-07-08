@@ -21,7 +21,7 @@ locals {
     home_size = 100
     project_size = 1000
     scratch_size = 50
-#    image_compute = "AlmaLinux-9"
+    image_compute = "AlmaLinux-9"
 #    image_map = {
 #      cpupool = "AlmaLinux-9"
 #      gpupool = "AlmaLinux-9"
