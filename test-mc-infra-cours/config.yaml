@@ -59,3 +59,4 @@ yum_cron::reboot: 'when-needed'
 yum_cron::upgrade_type: 'security'
 # reboot at 23:00 UTC (~5am eastern)
 yum_cron::reboot_command: "shutdown -r 23:00 'Rebooting after applying package updates'"
+yum_cron::mailto: 'securite-mc-formation@calculquebec.ca'
