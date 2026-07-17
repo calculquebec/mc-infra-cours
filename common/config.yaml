@@ -104,3 +104,7 @@ profile::users::ldap::users:
     count: 1
     passwd: ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAJ6nf+JXAomiYQlz5cZdjiooFxkzVL3zIK6d3dKBAXV4WEFGyg8Vh6XzKTCHW0/BUhxn8SsMrfiEqjG/GX7gG+JRByOwZJPAE6UWxI9iNa2yPy9ug7Bry1I7Cl3iuSNx9NENF+Rhk0JM4ZSzALAwIYGR/LSA4NDvMIwgX0N/+EZzYB+OZLxTgRokJ4yxe8kXzQuwD4wkmr4+uw0riB/MlpCg1fxf1dsvn5uTVDE3d9Ic1EZoFSpuNBGNB5Bix9tqbqge+gbhSg2v79aewOZKs0AI0bMp9wmQn2OGEaF+SNYki/9VN3ZCk+oiXzLy+I5CjeRUEO0GWDm4gH6vukkO5czA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBClbtm4aGLsLWI+adu8q0PKgBCWFEK/OG8afUdF/ff9fQY7]
     groups: ['def-sponsor00', 'admins']
+
+yum_cron::apply_updates: true
+yum_cron::mailto: ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQAwDQYJKoZIhvcNAQEBBQAEggEAhmIuJTQPFsMv/XBxphzmnuYgifEku2dha/rxEZ1loOPvKIAvDC59RK+6aGh70F9vfBOGpOIowvsZcfYxNZgryYVtabfkDu91mMfa55AML3xC5A/jKx/+S4WJSCpM30i+GkyoXyAAUJf5995idRBXRTC5QwGMc0V/Kuq8zJY/Tdemr8ePyAtN4ya7rADR6vwXtNFRXtAdmBAU3XhBdskzWFs5yAOmXXxwEElVfmHiG6IOH3eAlCi8WHOUY6anwOi9EejLP5QO4wsDiUGu6YTFws5Llm/6p1+nDqDWkii6U2y58aHlw3M27aPmG0XmCfp3H5VCDafLnsRwkfj2qFFBljBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBA8JJ3Dpp/HqQpyNWl28JbLgDA0ecr0rKo39XUaRYVh/9RKed9R2z3UEaDzCTCBUYTfgpP3HTRS2eRPW8XjFiUaDSs=]
+yum_cron::reboot_command: "test $(/opt/software/slurm/bin/squeue | wc -l) -eq 1 && shutdown -r +1 'Cluster is idle. Rebooting after applying package updates'"
