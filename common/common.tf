@@ -78,7 +78,7 @@ locals {
 
     cluster_purpose = "cours_academiques"
     config_git_url = "https://github.com/computecanada/puppet-magic_castle.git"
-    config_version = "15.6.1"
+    config_version = "987c322"
 
     node_flavors = {
       arbutus = ["cpu", "cpupool", "gpu", "gpupool"],
