@@ -65,7 +65,7 @@ profile::slurm::base::resume_timeout: 900
 profile::slurm::base::suspend_rate: 80
 profile::slurm::base::resume_rate: 80
 
-prometheus::storage_retention: '14d'
+prometheus::storage_retention: '150d'
 
 
 jupyterhub::kernel::venv::pip_environment:
