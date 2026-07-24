@@ -50,4 +50,6 @@ profile::slurm::accounting::accounts:
     Fairshare: 1
     MaxJobs: 10
 
-profile::slurm::base::slurm_version: '25.11'
+yum_cron::extra_configs:
+  'emitters/emit_via':
+    value: 'stdio,motd'
