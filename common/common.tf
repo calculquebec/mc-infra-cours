@@ -98,10 +98,10 @@ locals {
         mgmt = "p8-12gb"
         login = "p4-6gb"
         jupyter = "p4-6gb"
-        cpu = "c8-30gb-186-avx2"
-        cpupool = "c8-30gb-186-avx2"
-        gpu = "g1-8gb-c4-22gb"
-        gpupool = "g1-8gb-c4-22gb"
+        cpu = "cb2-7.5gb-70"
+        cpupool = "cb8-30gb-280"
+        gpu = "g1-12gb-c3-35gb-125"
+        gpupool = "g1-12gb-c3-35gb-125"
       }
       beluga = {
         mgmt = "p4-7.5gb"
