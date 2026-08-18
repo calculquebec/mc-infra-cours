@@ -1,0 +1,7 @@
+jupyterhub::jupyterhub_config_hash:
+  SbatchForm:
+    nprocs:
+      max: 8
+    oversubscribe:
+      def: false
+      lock: false
