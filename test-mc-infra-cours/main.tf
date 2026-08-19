@@ -9,7 +9,9 @@ locals {
     }
 
     mig = {
-      gpu = { "3g.20gb" = 2 }
+      juno = {
+        gpu = { "3g.20gb" = 2 }
+      }
     }
     user_quotas_sizes = {
       home = "3g"

@@ -127,8 +127,10 @@ locals {
     }
     
     mig = {
-      gpu = { "1g.5gb" = 7 }
-      gpupool = { "1g.5gb" = 7 }
+      juno = {
+        gpu = { "1g.5gb" = 7 }
+        gpupool = { "1g.5gb" = 7 }
+      }
     }
 
     shard = {
