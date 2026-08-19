@@ -2,9 +2,9 @@ locals {
   custom = {
     nnodes = {
       cpu = 1
-      cpupool = 0
+      cpupool = 1
       gpu = 1
-      gpupool = 16
+      gpupool = 1
       gpupool16 = 1
     }
 
