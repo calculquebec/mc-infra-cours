@@ -23,7 +23,7 @@ locals {
     home_size = 100
     project_size = 1000
     scratch_size = 50
-    image_map {
+    image_map = {
       cpu = "AlmaLinux-9"
       gpu = "AlmaLinux-9"
     }
