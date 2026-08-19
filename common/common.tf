@@ -43,10 +43,10 @@ data "tfe_workspace" "current" {
 locals {
   default_pod = {
     image = "AlmaLinux-9"
-    image_compute = "snapshot-cpunode-2026-A9.8"
+    image_compute = "snapshot-cpunode-2026-MC16-A9.8"
     image_map = {
-      cpupool = "snapshot-cpunode-2026-A9.8"
-      gpupool = "snapshot-gpunode-2026-A9.8"
+      cpupool = "snapshot-cpunode-2026-MC16-A9.8"
+      gpupool = "snapshot-gpunode-2026-MC16-A9.8"
     }
     nb_users = 1
 
