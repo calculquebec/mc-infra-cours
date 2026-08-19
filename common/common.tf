@@ -43,10 +43,10 @@ data "tfe_workspace" "current" {
 locals {
   default_pod = {
     image = "AlmaLinux-9"
-    image_compute = "snapshot-cpunode-2026-A9.8"
+    image_compute = "snapshot-cpunode-2026-MC16-A9.8"
     image_map = {
-      cpupool = "snapshot-cpunode-2026-A9.8"
-      gpupool = "snapshot-gpunode-2026-A9.8"
+      cpupool = "snapshot-cpunode-2026-MC16-A9.8"
+      gpupool = "snapshot-gpunode-2026-MC16-A9.8"
     }
     nb_users = 1
 
@@ -89,15 +89,19 @@ locals {
       cpu = ["node"]
       gpu = ["node"]
     }
+    upgrades = {
+      cpu = "vanilla-all"
+      gpu = "vanilla-all"
+    }
     instances_type_map = {
       arbutus = {
         mgmt = "p8-12gb"
         login = "p4-6gb"
         jupyter = "p4-6gb"
-        cpu = "c8-30gb-186-avx2"
-        cpupool = "c8-30gb-186-avx2"
-        gpu = "g1-8gb-c4-22gb"
-        gpupool = "g1-8gb-c4-22gb"
+        cpu = "cb2-7.5gb-70"
+        cpupool = "cb8-30gb-280"
+        gpu = "g1-12gb-c3-35gb-125"
+        gpupool = "g1-12gb-c3-35gb-125"
       }
       beluga = {
         mgmt = "p4-7.5gb"
@@ -123,8 +127,10 @@ locals {
     }
     
     mig = {
-      gpu = { "1g.5gb" = 7 }
-      gpupool = { "1g.5gb" = 7 }
+      juno = {
+        gpu = { "1g.5gb" = 7 }
+        gpupool = { "1g.5gb" = 7 }
+      }
     }
 
     shard = {
@@ -160,19 +166,22 @@ locals {
         type = try(local.custom.instances_type_map[var.cloud_name]["mgmt"], local.default_pod.instances_type_map[var.cloud_name]["mgmt"]),
 	tags = ["puppet", "mgmt", "nfs", "formation_extra", "cron"],
 	disk_size = 20,
-	count = 1
+	count = 1,
+	upgrade = "vanilla-all",
       }
       login = {
         type = try(local.custom.instances_type_map[var.cloud_name]["login"], local.default_pod.instances_type_map[var.cloud_name]["login"]),
 	tags = try(local.custom.nnodes.jupyter, 0) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
 	disk_size = 20,
-	count = try(local.custom.nnodes.login, 1)
+	count = try(local.custom.nnodes.login, 1),
+	upgrade = "vanilla-all",
       }
       jupyter = {
         type = try(local.custom.instances_type_map[var.cloud_name]["jupyter"], local.default_pod.instances_type_map[var.cloud_name]["jupyter"]),
 	tags = ["public", "proxy"],
 	disk_size = 20,
-	count = try(local.custom.nnodes.jupyter, 0)
+	count = try(local.custom.nnodes.jupyter, 0),
+	upgrade = "vanilla-all",
       }
     }
     compute_instances = {
@@ -186,6 +195,7 @@ locals {
 	  mig = try(local.custom.mig[var.cloud_name][flavor], local.custom.mig[flavor], local.default_pod.mig[var.cloud_name][flavor], local.default_pod.mig[flavor], null)
 	  shard = try(local.custom.shard[flavor], local.default_pod.shard[flavor], null)
 	  features = try(local.custom.features[flavor], local.default_pod.features[flavor], ["cpu"])
+	  upgrade = try(local.custom.upgrades[flavor], local.default_pod.upgrades[flavor], "security")
 	}
     }
     volumes_map = {
