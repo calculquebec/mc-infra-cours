@@ -20,6 +20,11 @@ locals {
       project = "500000"
     }
 
+    tags = {
+      cpu = ["node", "image"]
+      gpu = ["node", "image"]
+    }
+
     home_size = 100
     project_size = 1000
     scratch_size = 50
