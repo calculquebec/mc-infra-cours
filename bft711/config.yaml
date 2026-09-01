@@ -42,7 +42,7 @@ profile::accounts::skel_archives:
 
 cron::job:
   spawn_nodes:
-    command: '/opt/software/slurm/bin/scontrol update node=nodecpupool[1-2] state=power_up'
+    command: '/opt/software/slurm/bin/scontrol update node=cpupool[1-2] state=power_up'
     hour: '8'
     minute: '20'
     weekday: '2'
