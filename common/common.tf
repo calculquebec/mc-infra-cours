@@ -94,8 +94,8 @@ locals {
       juno = ["cpu", "cpupool", "gpu", "gpupool"]
     }
     tags = {
-      cpu = ["node"]
-      gpu = ["node"]
+      cpu = ["node", "allcq"]
+      gpu = ["node", "allcq"]
     }
     upgrades = {
       cpu = "vanilla-all"
@@ -172,21 +172,21 @@ locals {
     mgmt_instances = {
       mgmt = {
         type = try(local.custom.instances_type_map[var.cloud_name]["mgmt"], local.default_pod.instances_type_map[var.cloud_name]["mgmt"]),
-	tags = ["puppet", "mgmt", "nfs", "formation_extra", "cron"],
+	tags = ["puppet", "mgmt", "nfs", "formation_extra", "cron", "allcq"],
 	disk_size = 20,
 	count = 1,
 	upgrade = "vanilla-all",
       }
       login = {
         type = try(local.custom.instances_type_map[var.cloud_name]["login"], local.default_pod.instances_type_map[var.cloud_name]["login"]),
-	tags = try(local.custom.nnodes.jupyter, 0) == 0 ? ["login", "public", "proxy"] : ["login", "public"],
+	tags = try(local.custom.nnodes.jupyter, 0) == 0 ? ["login", "public", "proxy", "allcq"] : ["login", "public", "allcq"],
 	disk_size = 20,
 	count = try(local.custom.nnodes.login, 1),
 	upgrade = "vanilla-all",
       }
       jupyter = {
         type = try(local.custom.instances_type_map[var.cloud_name]["jupyter"], local.default_pod.instances_type_map[var.cloud_name]["jupyter"]),
-	tags = ["public", "proxy"],
+	tags = ["public", "proxy", "allcq"],
 	disk_size = 20,
 	count = try(local.custom.nnodes.jupyter, 0),
 	upgrade = "vanilla-all",
@@ -196,7 +196,7 @@ locals {
       for flavor in try(local.custom.node_flavors[var.cloud_name], local.custom.node_flavors, local.default_pod.node_flavors[var.cloud_name]):
         flavor => {
 	  type = try(local.custom.instances_type_map[var.cloud_name][flavor], local.custom.instances_type_map[flavor], local.default_pod.instances_type_map[var.cloud_name][flavor])
-	  tags = try(local.custom.tags[flavor], local.default_pod.tags[flavor], ["node", "pool"])
+	  tags = try(local.custom.tags[flavor], local.default_pod.tags[flavor], ["node", "pool", "allcq"])
 	  disk_size = try(local.custom.disk_size[flavor], local.default_pod.disk_size[flavor], 20)
 	  count = try(local.custom.nnodes[flavor], local.default_pod.nnodes[flavor], 0)
 	  image = try(local.custom.image_map[flavor], local.custom.image_compute, local.default_pod.image_map[flavor], local.default_pod.image_compute)
@@ -252,7 +252,7 @@ locals {
 }
 
 module "openstack" {
-  source         = "git::https://github.com/computecanada/magic_castle.git//openstack?ref=4ae5ab9"
+  source         = "git::https://github.com/computecanada/magic_castle.git//openstack?ref=output_instances"
   config_git_url = try(local.custom.config_git_url, local.default_pod.config_git_url)
   config_version = try(local.custom.config_version, local.default_pod.config_version)
 
