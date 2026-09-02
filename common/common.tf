@@ -35,6 +35,14 @@ variable "subnet_id" {
   type = string
   default = ""
 }
+variable "support_email" {
+  type = string
+  default = ""
+}
+variable "gitlab_token" {
+  type = string
+  default = ""
+}
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
   organization = "CalculQuebec"
@@ -232,10 +240,11 @@ locals {
     {
       "profile::slurm::controller::tfe_token" =  var.tfe_token
       "profile::slurm::controller::tfe_workspace" = data.tfe_workspace.current.id
-      "cluster_name" = local.name
+      "cluster_name" = "${local.name}${var.suffix}"
       "prometheus_password" = var.prometheus_password
       "cloud_name" = var.cloud_name
       "cluster_purpose" = local.cluster_purpose
+      "gitlab_token" = var.gitlab_token
     },
     var.credentials_hieradata,
     yamldecode(file("../common/config.yaml")),
@@ -284,6 +293,62 @@ output "accounts" {
 
 output "public_ip" {
   value = module.openstack.public_ip
+}
+
+terraform {
+  required_providers {
+    gitlab = {
+      source = "gitlabhq/gitlab"
+    }
+    prettyjson = {
+      source = "graysievert/prettyjson"
+    }
+  }
+}
+
+locals {
+  assets = [
+    for host in keys(module.openstack.assets): {
+        host = {
+          "name" = "${host}.int.${module.openstack.cluster_name}.${module.openstack.domain}",
+          "id"   = "CQ/${host}.int.${module.openstack.cluster_name}.${module.openstack.domain}"
+          "uuid" = module.openstack.assets[host].uuid,
+          "ip"   = compact([module.openstack.assets[host].local_ip, try(module.openstack.assets[host].public_ip, "")]),
+          "exposure" = coalesce(
+            contains(module.openstack.assets[host].tags, "login") ? "login" : "",
+            contains(module.openstack.assets[host].tags, "proxy") ? "portal" : "",
+	    contains(module.openstack.assets[host].tags, "node") ? "node" : "",
+            "infra"
+          ),
+          "type" = "virtual",
+        },
+        service = {
+          "name" = module.openstack.cluster_name,
+          "state" = "production",
+          "type" = "Magic castle cluster for training",
+        },
+        location = {
+          "site" = "${var.cloud_name} cloud"
+        },
+        user = {
+          "email" = var.support_email
+        },
+      }
+    ]
+}
+output "assets" {
+  value = local.assets
+}
+
+resource "gitlab_repository_file" "assets_file" {
+  project = "calculquebec/formation-assets"
+  file_path = "${local.cluster_purpose}/${module.openstack.cluster_name}/assets/${module.openstack.cluster_name}-assets.json"
+  branch = "main"
+  encoding = "text"
+  content = provider::prettyjson::jsonprettyprint(jsonencode(local.assets))
+  author_email = var.support_email
+  author_name = "Terraform"
+  commit_message = "Automatic update of assets"
 }
 
 # Uncomment to register your domain name with CloudFlare
