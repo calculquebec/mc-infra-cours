@@ -1,1 +1,4 @@
 mod 'puppet-cron', '2.0.0'
+mod 'puppet-dnf2git',
+    :git => 'https://github.com/computecanada/puppet-dnf2git.git',
+    :ref => 'main'
