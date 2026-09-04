@@ -73,6 +73,8 @@ locals {
       gpupool = ["gpu"],
     }
 
+    service_state = "production"
+
     home_size = 100
     project_size = 100
     scratch_size = 100
@@ -328,7 +330,7 @@ locals {
         },
         service = {
           "name" = module.openstack.cluster_name,
-          "state" = "production",
+          "state" = try(local.custom.service_state, local.default_pod.service_state),
           "type" = "Magic castle cluster for training",
         },
         location = {
