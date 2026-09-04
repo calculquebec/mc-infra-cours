@@ -7,7 +7,7 @@ locals {
       gpupool = 1
       gpupool16 = 1
     }
-
+    service_state = "development"
     mig = {
       juno = {
         gpu = { "3g.20gb" = 2 }
