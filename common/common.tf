@@ -367,7 +367,6 @@ resource "terraform_data" "cleanup_assets" {
   # Capture all required values during creation so they are safe at destroy-time
   triggers_replace = {
     support_email       = var.support_email
-    cluster_purpose     = local.cluster_purpose
     cluster_name        = module.openstack.cluster_name
     assets_file_path    = gitlab_repository_file.assets_file.file_path
     
@@ -401,7 +400,7 @@ resource "terraform_data" "cleanup_assets" {
             action    = "delete"
             file_path = path
           }
-          if path != self.triggers_replace.assets_file_path && strcontains(path, "${self.triggers_replace.cluster_purpose}/${self.triggers_replace.cluster_name}")
+          if path != self.triggers_replace.assets_file_path
         ]
       })
     }
