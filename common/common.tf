@@ -47,6 +47,10 @@ variable "gitlab_project_name" {
   type = string
   default = ""
 }
+variable "puppetfile_sensitive" {
+  type = string
+  default = ""
+}
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
   organization = "CalculQuebec"
@@ -290,7 +294,10 @@ module "openstack" {
   subnet_id = "${var.subnet_id}"
   os_ext_network = "${var.os_ext_network}"
 
-  puppetfile = file("../common/Puppetfile")
+  puppetfile = <<EOT
+${file("../common/Puppetfile")}
+${var.puppetfile_sensitive}
+EOT
 }
 
 output "accounts" {
