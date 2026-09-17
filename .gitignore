@@ -1,4 +1,5 @@
 cli
+*.sensitive
 *private*.pem
 .DS_Store
 
