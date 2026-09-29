@@ -21,8 +21,8 @@ locals {
     }
 
     tags = {
-      cpu = ["node", "image"]
-      gpu = ["node", "image"]
+      cpu = ["node"]
+      gpu = ["node"]
     }
 
     home_size = 100
