@@ -1,0 +1,29 @@
+cron::job:
+  spawn_nodes:
+    command: '/opt/software/slurm/bin/scontrol update node=cpupool[1-15] state=power_up'
+    hour: '17'
+    minute: '55'
+    weekday: '2'
+    month: '10-12'
+    user: 'root'
+    description: 'spawn nodes at 17:50 on each Tuesday'
+    environment: ['CRON_TZ=America/New_York']
+  spawn_gpu_nodes_nov:
+    command: '/opt/software/slurm/bin/scontrol update node=gpupool[1-10] state=power_up'
+    hour: '17'
+    minute: '55'
+    day: '17,24'
+    month: '11'
+    user: 'root'
+    description: 'spawn nodes at 17:50 on each Tuesday'
+    environment: ['CRON_TZ=America/New_York']
+  spawn_gpu_nodes_dev:
+    command: '/opt/software/slurm/bin/scontrol update node=gpupool[1-10] state=power_up'
+    hour: '17'
+    minute: '55'
+    day: '1,8,15'
+    month: '12'
+    user: 'root'
+    description: 'spawn nodes at 17:50 on each Tuesday'
+    environment: ['CRON_TZ=America/New_York']
+
