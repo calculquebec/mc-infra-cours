@@ -26,4 +26,3 @@ cron::job:
     user: 'root'
     description: 'spawn nodes at 17:50 on each Tuesday'
     environment: ['CRON_TZ=America/New_York']
-
