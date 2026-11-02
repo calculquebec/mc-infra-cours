@@ -47,6 +47,10 @@ variable "gitlab_project_name" {
   type = string
   default = ""
 }
+variable "slack_webhook_url" {
+  type = string
+  default = ""
+}
 data "tfe_workspace" "current" {
   name         = var.TFC_WORKSPACE_NAME
   organization = "CalculQuebec"
@@ -400,6 +404,22 @@ resource "terraform_data" "software_file" {
       UUID = self.triggers_replace.uuid
     }
   }
+}
+
+resource "tfe_notification_configuration" "slack" {
+  name             = "slack-infra-notifications-${module.openstack.cluster_name}"
+  enabled          = true
+  destination_type = "slack"
+  url              = var.slack_webhook_url
+
+  # Select which workspace events trigger notifications
+  triggers = [
+    "run:needs_attention",
+    "run:completed",
+    "run:errored"
+  ]
+
+  workspace_id = data.tfe_workspace.current.id
 }
 
 # Uncomment to register your domain name with CloudFlare
